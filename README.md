@@ -1,143 +1,170 @@
-# Partie I — Construire un socle sécurisé
-## Campagne 1 — Installation et fondations
-### 1.1 Pourquoi sécuriser un socle Linux ?
-### 1.2 Installation d'AlmaLinux minimal
-### 1.3 Comprendre les composants d'un système Linux
-### 1.4 Premier démarrage et premières vérifications
-### 1.5 Mise à jour et gestion des dépôts
-### 1.6 Architecture des systèmes de fichiers
-### 1.7 Utilisateurs, groupes et permissions
-### 1.8 sudo et principe du moindre privilège
-### 1.9 Première mise en sécurité du serveur
-### 1.10 Création du laboratoire Sentinel
-## Campagne 2 — Contrôle des accès
-### 2.1 Les permissions UNIX
-### 2.2 ACL
-### 2.3 umask
-### 2.4 Attributs étendus (chattr)
-### 2.5 PAM
-### 2.6 Politique de mots de passe
-### 2.7 Comptes système
-### 2.8 sudo avancé
-### 2.9 Comprendre /etc/passwd, /etc/shadow et /etc/group
-### 2.10 Synthèse : sécuriser les identités
-## Campagne 3 — Réseau et exposition
-### 3.1 TCP/IP côté administrateur
-### 3.2 Firewalld : architecture
-### 3.3 Les zones Firewalld
-### 3.4 Les services Firewalld
-### 3.5 Les ports et protocoles
-### 3.6 Runtime vs Permanent
-### 3.7 Rich Rules
-### 3.8 NAT et Port Forwarding
-### 3.9 Journalisation et diagnostic
-### 3.10 Construction de la politique réseau de Sentinel
-## Campagne 4 — SSH et accès distant
-### 4.1 Architecture d'OpenSSH
-### 4.2 Authentification par mot de passe
-### 4.3 Authentification par clés
-### 4.4 Durcissement de sshd_config
-### 4.5 Bastion d'administration
-### 4.6 Journalisation et audit SSH
-### 4.7 Protection contre les attaques (Fail2ban, etc.)
-### 4.8 Mission : administration sécurisée de Sentinel
-## Campagne 5 — Systemd et les services
-### 5.1 Comprendre systemd
-### 5.2 Les unités (.service, .socket, .target…)
-### 5.3 Créer le service Sentinel
-### 5.4 Sandboxing systemd
-### 5.5 Capacités Linux
-### 5.6 Journalisation avec journald
-### 5.7 Supervision et redémarrage automatique
-### 5.8 Mission : rendre Sentinel résilient
-## Campagne 6 — SELinux
-### 6.1 Pourquoi SELinux existe
-### 6.2 Les contextes
-### 6.3 Les politiques
-### 6.4 Diagnostic des refus
-### 6.5 Création de règles
-### 6.6 Sécuriser Sentinel avec SELinux
-## Campagne 7 — TLS et PKI
-### 7.1 Cryptographie appliquée
-### 7.2 Certificats X.509
-### 7.3 Autorité de certification
-### 7.4 Mutual TLS
-### 7.5 Intégration FreeIPA
-### 7.6 Rotation des certificats
-### 7.7 Sécurisation TLS de Sentinel
-# Partie II — Industrialiser la sécurité
-## Campagne 8 — FreeIPA
-### 8.1 Présentation de FreeIPA
-### 8.2 Architecture interne (389 DS, Kerberos, Dogtag, DNS…)
-### 8.3 Installation
-### 8.4 Gestion des utilisateurs
-### 8.5 Groupes et rôles
-### 8.6 Politiques sudo
-### 8.7 Gestion des hôtes
-### 8.8 Certificats
-### 8.9 Intégration de Sentinel
-### 8.10 Mission : administrer une infrastructure avec FreeIPA
-## Campagne 9 — Ansible
-### 9.1 Architecture Ansible
-### 9.2 Inventaires
-### 9.3 Playbooks
-### 9.4 Variables
-### 9.5 Rôles
-### 9.6 Vault
-### 9.7 Déploiement de Sentinel
-### 9.8 Durcissement automatisé
-### 9.9 Vérification de conformité
-### 9.10 Mission : reconstruire un serveur en moins de 30 minutes
-## Campagne 10 — RPM et cycle de vie
-### 10.1 Construire un paquet RPM
-### 10.2 Dépendances
-### 10.3 Fichiers de configuration
-### 10.4 Signature des paquets
-### 10.5 Dépôt RPM privé
-### 10.6 Packaging de Sentinel
-## Campagne 11 — Conteneurisation
-### 11.1 Podman
-### 11.2 Rootless
-### 11.3 Images sécurisées
-### 11.4 Réseaux
-### 11.5 Secrets
-### 11.6 Exécution sécurisée de Sentinel
-## Campagne 12 — Supervision et audit
-### 12.1 Journalisation centralisée
-### 12.2 Auditd
-### 12.3 Intégrité des fichiers
-### 12.4 Supervision
-### 12.5 Alertes
-### 12.6 Tableau de bord Sentinel
-# Partie III — Mise en situation
-## Campagne 13 — Attaques et défense
+# Formation Sentinel — sécuriser et industrialiser AlmaLinux
 
-Chaque chapitre suit le même principe :
+Cette formation construit progressivement un socle AlmaLinux sécurisé autour d'une application fil rouge, **Sentinel**. Les chapitres déjà rédigés sont accessibles directement depuis ce sommaire. Les campagnes sans lien font partie du parcours prévu mais restent à produire.
 
-Présentation de l'attaque
+Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.md).
 
-Réalisation depuis Kali Linux
+## Partie I — Construire un socle sécurisé
 
-Analyse des traces
+### Campagne 1 — Installation et fondations
 
-Mise en œuvre des contre-mesures
+- [1.1 — Pourquoi sécuriser un socle Linux ?](campagne%201/1.1-pourquoi-securiser-socle-linux.md)
+- [1.2 — Installation d'AlmaLinux minimal](campagne%201/1.2-installation-almalinux-minimal.md)
+- [1.3 — Comprendre les composants d'un système Linux](campagne%201/1.3-composants-systeme-linux.md)
+- [1.4 — Premier démarrage et premières vérifications](campagne%201/1.4-premier-demarrage-verifications.md)
+- [1.5 — Mise à jour et gestion des dépôts](campagne%201/1.5-mise-a-jour-gestion-depots.md)
+- [1.6 — Architecture des systèmes de fichiers](campagne%201/1.6-architecture-systemes-fichiers.md)
+- [1.7 — Utilisateurs, groupes et permissions](campagne%201/1.7-utilisateurs-groupes-permissions.md)
+- [1.8 — `sudo` et principe du moindre privilège](campagne%201/1.8-sudo-moindre-privilege.md)
+- [1.9 — Première mise en sécurité du serveur](campagne%201/1.9-premiere-mise-en-securite-serveur.md)
+- [1.10 — Création du laboratoire Sentinel](campagne%201/1.10-creation-laboratoire-sentinel.md)
 
-Vérification de l'efficacité
+### Campagne 2 — Contrôle des accès
 
-### 13.1 Reconnaissance
-### 13.2 Scan réseau
-### 13.3 Brute force SSH
-### 13.4 Escalade de privilèges
-### 13.5 Mouvements latéraux
-### 13.6 Persistance
-### 13.7 Exfiltration
-### 13.8 Étude de cas complète
-## Campagne 14 — Projet final
-### 14.1 Déployer Sentinel sur une AlmaLinux minimale
-### 14.2 Sécuriser l'hôte
-### 14.3 Intégrer FreeIPA
-### 14.4 Déployer avec Ansible
-### 14.5 Packager en RPM
-### 14.6 Conteneuriser avec Podman
-### 14.7 Superviser et auditer
-### 14.8 Audit final et tests d'intrusion depuis Kali
+- [2.1 — Les permissions UNIX](campagne%202/2.1-permissions-unix.md)
+- [2.2 — Les ACL](campagne%202/2.2-acl.md)
+- [2.3 — L'`umask`](campagne%202/2.3-umask.md)
+- [2.4 — Les attributs étendus](campagne%202/2.4-attributs-etendus.md)
+- [2.5 — PAM](campagne%202/2.5-pam.md)
+- [2.6 — Politique de mots de passe](campagne%202/2.6-politique-mots-de-passe.md)
+- [2.7 — Les comptes système](campagne%202/2.7-comptes-systeme.md)
+- [2.8 — `sudo` avancé](campagne%202/2.8-sudo-avance.md)
+- [2.9 — Comprendre les fichiers d'identités Linux](campagne%202/2.9-fichiers-identites-linux.md)
+- [2.10 — Synthèse : sécuriser les identités](campagne%202/2.10-synthese-securiser-identites.md)
+
+### Campagne 3 — Réseau et exposition
+
+- [3.1 — TCP/IP côté administrateur](campagne%203/3.1-tcp-ip-administrateur.md)
+- [3.2 — Architecture de Firewalld](campagne%203/3.2-architecture-firewalld.md)
+- [3.3 — Les zones Firewalld](campagne%203/3.3-zones-firewalld.md)
+- [3.4 — Les services Firewalld](campagne%203/3.4-services-firewalld.md)
+- [3.5 — Conntrack et le filtrage par états](campagne%203/3.5-conntrack-filtrage-etats.md)
+- [3.6 — Les Rich Rules Firewalld](campagne%203/3.6-rich-rules-firewalld.md)
+- [3.7 — Journalisation et analyse Firewalld](campagne%203/3.7-journalisation-firewalld.md)
+- [3.8 — Les IP Sets Firewalld](campagne%203/3.8-ip-sets-firewalld.md)
+- [3.9 — Runtime et Permanent](campagne%203/3.9-runtime-permanent.md)
+- [3.10 — Concevoir la politique réseau de Sentinel](campagne%203/3.10-politique-reseau-sentinel.md)
+
+### Campagne 4 — SSH et accès distant
+
+- [4.1 — Architecture d'OpenSSH](campagne%204/4.1-architecture-openssh.md)
+- [4.2 — Authentification par mot de passe](campagne%204/4.2-authentification-mot-de-passe.md)
+- [4.3 — Authentification par clés](campagne%204/4.3-authentification-par-cles.md)
+- [4.4 — Durcissement de `sshd_config`](campagne%204/4.4-durcissement-sshd-config.md)
+- [4.5 — Bastion d'administration](campagne%204/4.5-bastion-administration.md)
+- [4.6 — Journalisation et audit SSH](campagne%204/4.6-journalisation-audit-ssh.md)
+- [4.7 — Protection contre les attaques SSH](campagne%204/4.7-protection-attaques-ssh.md)
+- [4.8 — Mission : administrer Sentinel en sécurité](campagne%204/4.8-mission-administration-sentinel.md)
+
+### Campagne 5 — systemd et services
+
+- [5.1 — Comprendre `systemd`](campagne%205/5.1-comprendre-systemd.md)
+- [5.2 — Les unités `systemd`](campagne%205/5.2-unites-systemd.md)
+- [5.3 — Créer le service Sentinel](campagne%205/5.3-creer-service-sentinel.md)
+- [5.4 — Sandboxing `systemd`](campagne%205/5.4-sandboxing-systemd.md)
+- [5.5 — Les capacités Linux](campagne%205/5.5-capacites-linux.md)
+- [5.6 — Journalisation avec `journald`](campagne%205/5.6-journalisation-journald.md)
+- [5.7 — Supervision et redémarrage automatique](campagne%205/5.7-supervision-redemarrage.md)
+- [5.8 — Mission : rendre Sentinel résilient](campagne%205/5.8-mission-sentinel-resilient.md)
+
+### Campagne 6 — SELinux
+
+- [6.1 — Pourquoi SELinux existe](campagne%206/6.1-pourquoi-selinux-existe.md)
+- [6.2 — Les contextes SELinux](campagne%206/6.2-contextes-selinux.md)
+- [6.3 — Les politiques SELinux](campagne%206/6.3-politiques-selinux.md)
+- [6.4 — Diagnostic des refus SELinux](campagne%206/6.4-diagnostic-refus-selinux.md)
+- [6.5 — Création de règles SELinux](campagne%206/6.5-creation-regles-selinux.md)
+- [6.6 — Sécuriser Sentinel avec SELinux](campagne%206/6.6-securiser-sentinel-selinux.md)
+
+### Campagne 7 — TLS et PKI
+
+1. Cryptographie appliquée
+2. Certificats X.509
+3. Autorité de certification
+4. Mutual TLS
+5. Intégration FreeIPA
+6. Rotation des certificats
+7. Sécurisation TLS de Sentinel
+
+## Partie II — Industrialiser la sécurité
+
+### Campagne 8 — FreeIPA
+
+- [8.1 — Présentation de FreeIPA](campagne%208/8.1-presentation-freeipa.md)
+- [8.2 — Architecture interne de FreeIPA](campagne%208/8.2-architecture-interne-freeipa.md)
+- [8.3 — Installation de FreeIPA](campagne%208/8.3-installation-freeipa.md)
+- [8.4 — Gestion des utilisateurs](campagne%208/8.4-gestion-utilisateurs.md)
+- [8.5 — Groupes et rôles](campagne%208/8.5-groupes-roles.md)
+- [8.6 — Politiques `sudo`](campagne%208/8.6-politiques-sudo.md)
+- [8.7 — Gestion des hôtes](campagne%208/8.7-gestion-hotes.md)
+- [8.8 — Certificats](campagne%208/8.8-certificats.md)
+- [8.9 — Intégration de Sentinel](campagne%208/8.9-integration-sentinel.md)
+- [8.10 — Mission : administrer avec FreeIPA](campagne%208/8.10-mission-administration-freeipa.md)
+
+### Campagne 9 — Industrialisation avec Ansible
+
+- [9.1 — Architecture Ansible](campagne%209/9.1-architecture-ansible.md)
+- [9.2 — Architecture d'Ansible](campagne%209/9.2-composants-ansible.md)
+- [9.3 — Inventaires](campagne%209/9.3-inventaires.md)
+- [9.4 — Premiers playbooks](campagne%209/9.4-premiers-playbooks.md)
+- [9.5 — Variables et templates](campagne%209/9.5-variables-templates.md)
+- [9.6 — Les rôles Ansible](campagne%209/9.6-roles-ansible.md)
+- [9.7 — Déployer Sentinel avec Ansible](campagne%209/9.7-deployer-sentinel-ansible.md)
+- [9.8 — Intégrer Sentinel à FreeIPA](campagne%209/9.8-integrer-sentinel-freeipa.md)
+- [9.9 — Industrialiser le laboratoire](campagne%209/9.9-industrialiser-laboratoire.md)
+- [9.10 — Mission : déployer l'infrastructure Sentinel](campagne%209/9.10-mission-deploiement-sentinel.md)
+
+### Campagne 10 — RPM et cycle de vie
+
+La campagne est [réservée et documentée](campagne%2010/README.md), mais son contenu reste à rédiger.
+
+1. Construire un paquet RPM
+2. Dépendances
+3. Fichiers de configuration
+4. Signature des paquets
+5. Dépôt RPM privé
+6. Packaging de Sentinel
+
+### Campagne 11 — Conteneurisation
+
+1. Podman
+2. Rootless
+3. Images sécurisées
+4. Réseaux
+5. Secrets
+6. Exécution sécurisée de Sentinel
+
+### Campagne 12 — Supervision et audit
+
+1. Journalisation centralisée
+2. Auditd
+3. Intégrité des fichiers
+4. Supervision
+5. Alertes
+6. Tableau de bord Sentinel
+
+## Partie III — Mise en situation
+
+### Campagne 13 — Attaques et défense
+
+Chaque chapitre suit le cycle : présentation de l'attaque, réalisation depuis Kali Linux, analyse des traces, mise en œuvre des contre-mesures et vérification de leur efficacité.
+
+1. Reconnaissance
+2. Scan réseau
+3. Brute force SSH
+4. Escalade de privilèges
+5. Mouvements latéraux
+6. Persistance
+7. Exfiltration
+8. Étude de cas complète
+
+### Campagne 14 — Projet final
+
+1. Déployer Sentinel sur une AlmaLinux minimale
+2. Sécuriser l'hôte
+3. Intégrer FreeIPA
+4. Déployer avec Ansible
+5. Packager en RPM
+6. Conteneuriser avec Podman
+7. Superviser et auditer
+8. Réaliser l'audit final et les tests d'intrusion depuis Kali
