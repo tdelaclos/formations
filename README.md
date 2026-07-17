@@ -116,14 +116,12 @@ Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.m
 
 ### Campagne 10 — RPM et cycle de vie
 
-La campagne est [réservée et documentée](campagne%2010/README.md), mais son contenu reste à rédiger.
-
-1. Construire un paquet RPM
-2. Dépendances
-3. Fichiers de configuration
-4. Signature des paquets
-5. Dépôt RPM privé
-6. Packaging de Sentinel
+- [10.1 — Construire un paquet RPM](campagne%2010/10.1-construire-paquet-rpm.md)
+- [10.2 — Gérer les dépendances RPM](campagne%2010/10.2-gerer-dependances-rpm.md)
+- [10.3 — Gérer les fichiers de configuration RPM](campagne%2010/10.3-gerer-fichiers-configuration-rpm.md)
+- [10.4 — Signer les paquets RPM](campagne%2010/10.4-signer-paquets-rpm.md)
+- [10.5 — Exploiter un dépôt RPM privé](campagne%2010/10.5-exploiter-depot-rpm-prive.md)
+- [10.6 — Packager Sentinel](campagne%2010/10.6-packager-sentinel.md)
 
 ### Campagne 11 — Conteneurisation
 
