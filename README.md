@@ -125,12 +125,12 @@ Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.m
 
 ### Campagne 11 — Conteneurisation
 
-1. Podman
-2. Rootless
-3. Images sécurisées
-4. Réseaux
-5. Secrets
-6. Exécution sécurisée de Sentinel
+- [11.1 — Découvrir Podman](campagne%2011/11.1-decouvrir-podman.md)
+- [11.2 — Exécuter des conteneurs rootless](campagne%2011/11.2-conteneurs-rootless.md)
+- [11.3 — Construire des images sécurisées](campagne%2011/11.3-construire-images-securisees.md)
+- [11.4 — Concevoir les réseaux de conteneurs](campagne%2011/11.4-reseaux-conteneurs.md)
+- [11.5 — Gérer les secrets avec Podman](campagne%2011/11.5-gerer-secrets-podman.md)
+- [11.6 — Exécuter Sentinel en sécurité](campagne%2011/11.6-executer-sentinel-securite.md)
 
 ### Campagne 12 — Supervision et audit
 
