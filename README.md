@@ -9,15 +9,15 @@ Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.m
 ### Campagne 1 — Installation et fondations
 
 - [1.1 — Pourquoi sécuriser un socle Linux ?](campagne%201/1.1-pourquoi-securiser-socle-linux.md)
-- [1.2 — Installation d'AlmaLinux minimal](campagne%201/1.2-installation-almalinux-minimal.md)
+- [1.2 — Installer AlmaLinux minimal](campagne%201/1.2-installation-almalinux-minimal.md)
 - [1.3 — Comprendre les composants d'un système Linux](campagne%201/1.3-composants-systeme-linux.md)
-- [1.4 — Premier démarrage et premières vérifications](campagne%201/1.4-premier-demarrage-verifications.md)
-- [1.5 — Mise à jour et gestion des dépôts](campagne%201/1.5-mise-a-jour-gestion-depots.md)
-- [1.6 — Architecture des systèmes de fichiers](campagne%201/1.6-architecture-systemes-fichiers.md)
-- [1.7 — Utilisateurs, groupes et permissions](campagne%201/1.7-utilisateurs-groupes-permissions.md)
-- [1.8 — `sudo` et principe du moindre privilège](campagne%201/1.8-sudo-moindre-privilege.md)
-- [1.9 — Première mise en sécurité du serveur](campagne%201/1.9-premiere-mise-en-securite-serveur.md)
-- [1.10 — Création du laboratoire Sentinel](campagne%201/1.10-creation-laboratoire-sentinel.md)
+- [1.4 — Établir la baseline du serveur](campagne%201/1.4-premier-demarrage-verifications.md)
+- [1.5 — Mettre à jour et gérer les dépôts](campagne%201/1.5-mise-a-jour-gestion-depots.md)
+- [1.6 — Organiser les systèmes de fichiers](campagne%201/1.6-architecture-systemes-fichiers.md)
+- [1.7 — Comprendre identités et permissions](campagne%201/1.7-utilisateurs-groupes-permissions.md)
+- [1.8 — Administrer avec `sudo`](campagne%201/1.8-sudo-moindre-privilege.md)
+- [1.9 — Mission : mettre le serveur en sécurité](campagne%201/1.9-premiere-mise-en-securite-serveur.md)
+- [1.10 — Créer le laboratoire Sentinel](campagne%201/1.10-creation-laboratoire-sentinel.md)
 
 ### Campagne 2 — Contrôle des accès
 
