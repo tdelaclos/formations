@@ -62,6 +62,22 @@ Transition éventuelle vers le chapitre suivant.
 
 Les chapitres de mission conservent cette ossature. Leur corps peut toutefois être organisé en contexte, contraintes, travail demandé, critères de réussite et livrables.
 
+## Jalons de l'application Sentinel
+
+Lorsqu'un chapitre modifie concrètement l'application fil rouge, il ajoute une section `Jalon Sentinel`. Cette section précise :
+
+- la version de départ et les fonctions déjà acquises ;
+- le besoin opérationnel introduit par la campagne ;
+- les fichiers et interfaces modifiés ;
+- la compatibilité de la configuration et des données ;
+- les tests automatisés et fonctionnels ;
+- au moins un échec, refus ou scénario de panne attendu ;
+- le commit ou la version qui devient l'entrée du jalon suivant.
+
+Une campagne peut appliquer un mécanisme à Sentinel sans modifier le code. Dans ce cas, elle conserve la version applicative et versionne séparément la configuration ou l'infrastructure. La trajectoire commune et les interfaces déjà acquises sont définies dans le [parcours applicatif Sentinel](PARCOURS-SENTINEL.md).
+
+Les extraits proposés doivent être exécutables ou indiquer sans ambiguïté le fichier et le point d'insertion. Un chapitre ne doit pas supposer l'existence d'une option CLI, d'une route HTTP, d'un chemin ou d'une métrique qui n'a pas été introduit dans un jalon antérieur.
+
 ## Hiérarchie des titres
 
 - un seul titre de niveau 1 (`#`) : le titre du chapitre ;
