@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from typing import Optional
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -22,7 +23,7 @@ SPEC.loader.exec_module(SENTINEL)
 
 
 class SentinelTests(unittest.TestCase):
-    def create_config(self, root: pathlib.Path, content: str | None = None) -> pathlib.Path:
+    def create_config(self, root: pathlib.Path, content: Optional[str] = None) -> pathlib.Path:
         config = root / "sentinel.conf"
         config.write_text(content or "[storage]\nstate_directory = state\n", encoding="utf-8")
         return config
