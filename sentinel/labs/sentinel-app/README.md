@@ -18,5 +18,7 @@ Règles de maintenance :
 | `0.2.0` | chapitre 2.10 | configuration et état persistant |
 | `0.3.0` | chapitre 3.10 | interface HTTP réelle |
 | `0.4.0` | chapitre 5.8 | service compatible avec systemd |
+| `0.5.0` | campagne 7 | TLS et authentification mutuelle |
+| `0.6.0` | chapitre 8.9 | autorisation des identités de certificat |
 
 La campagne 4 administre le checkpoint 0.3.0 sans changer son code. La campagne 6 confine le checkpoint 0.4.0 et versionne séparément la politique SELinux.
