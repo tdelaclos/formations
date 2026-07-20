@@ -103,7 +103,13 @@ nav:
       - campagne_11/11.4-reseaux-conteneurs.md
       - campagne_11/11.5-gerer-secrets-podman.md
       - campagne_11/11.6-executer-sentinel-securite.md
-
+    - Campagne 12 - Supervision et audit:
+      - campagne_12/12.1-centraliser-journaux-rsyslog.md
+      - campagne_12/12.2-auditer-systeme-auditd.md
+      - campagne_12/12.3-controler-integrite-fichiers-aide.md
+      - campagne_12/12.4-superviser-sentinel-prometheus.md
+      - campagne_12/12.5-concevoir-alertes-alertmanager.md
+      - campagne_12/12.6-construire-tableau-bord-sentinel.md
 
 
 

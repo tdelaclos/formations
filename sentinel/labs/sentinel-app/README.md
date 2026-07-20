@@ -20,5 +20,8 @@ Règles de maintenance :
 | `0.4.0` | chapitre 5.8 | service compatible avec systemd |
 | `0.5.0` | campagne 7 | TLS et authentification mutuelle |
 | `0.6.0` | chapitre 8.9 | autorisation des identités de certificat |
+| `1.0.0` | chapitre 10.6 | interfaces stabilisées et fichiers RPM |
+| `1.1.0` | chapitre 12.4 | métriques Prometheus réelles |
 
 La campagne 4 administre le checkpoint 0.3.0 sans changer son code. La campagne 6 confine le checkpoint 0.4.0 et versionne séparément la politique SELinux.
+La campagne 9 déploie 0.6.0 sans modification. La campagne 11 construit une image de 1.0.0 et versionne l'image par son digest sans créer une version applicative artificielle.

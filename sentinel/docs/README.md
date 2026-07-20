@@ -134,12 +134,12 @@ Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.m
 
 ### Campagne 12 — Supervision et audit
 
-1. Journalisation centralisée
-2. Auditd
-3. Intégrité des fichiers
-4. Supervision
-5. Alertes
-6. Tableau de bord Sentinel
+- [12.1 — Centraliser les journaux avec Rsyslog](campagne_12/12.1-centraliser-journaux-rsyslog.md)
+- [12.2 — Auditer le système avec `auditd`](campagne_12/12.2-auditer-systeme-auditd.md)
+- [12.3 — Contrôler l'intégrité des fichiers avec AIDE](campagne_12/12.3-controler-integrite-fichiers-aide.md)
+- [12.4 — Superviser Sentinel avec Prometheus](campagne_12/12.4-superviser-sentinel-prometheus.md)
+- [12.5 — Concevoir des alertes avec Alertmanager](campagne_12/12.5-concevoir-alertes-alertmanager.md)
+- [12.6 — Construire le tableau de bord Sentinel](campagne_12/12.6-construire-tableau-bord-sentinel.md)
 
 ## Partie III — Mise en situation
 

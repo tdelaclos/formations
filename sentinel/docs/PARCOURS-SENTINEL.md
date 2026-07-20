@@ -58,9 +58,9 @@ Une campagne peut donc renforcer, déployer ou administrer Sentinel sans changer
 | `0.6.0` | 8 | identité de l'hôte et autorisation issue de FreeIPA | certificat renouvelable et identité vérifiée |
 | `0.6.0` | 9 | code inchangé, déploiement multi-hôte reproductible | idempotence et tests fonctionnels Ansible |
 | `1.0.0` | 10 | interfaces stabilisées et paquet RPM | installation, mise à niveau, vérification et retrait |
-| `1.1.0` | 11 | exécution compatible avec un conteneur rootless | image immuable, healthcheck et arrêt propre |
-| `1.2.0` | 12 | `/metrics`, compteurs, latence et information de build | requêtes PromQL, alertes et tableau de bord |
-| `1.2.x` | 13 | code normalement inchangé, production de traces d'incident | détection et corrélation pendant les scénarios d'attaque |
+| `1.0.0` | 11 | code inchangé, image rootless du produit empaqueté | digest, healthcheck et arrêt propre |
+| `1.1.0` | 12 | `/metrics`, compteurs, latence et information de build | requêtes PromQL, alertes et tableau de bord |
+| `1.1.x` | 13 | code normalement inchangé, production de traces d'incident | détection et corrélation pendant les scénarios d'attaque |
 | `2.0.0` | 14 | assemblage qualifié du produit et de son infrastructure | audit final et tests d'acceptation de bout en bout |
 
 Cette numérotation décrit le scénario pédagogique. Elle ne prétend pas remplacer une politique de versionnement définie par une organisation.
