@@ -15,6 +15,7 @@ from typing import Optional
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PROGRAM = ROOT / "src" / "sentinel.py"
+sys.path.insert(0, str(ROOT / "src"))
 SPEC = importlib.util.spec_from_file_location("sentinel_app", PROGRAM)
 assert SPEC is not None and SPEC.loader is not None
 SENTINEL = importlib.util.module_from_spec(SPEC)

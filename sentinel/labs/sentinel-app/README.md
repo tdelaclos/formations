@@ -4,6 +4,8 @@ Ce répertoire contient les jalons exécutables de l'application fil rouge. Il c
 
 Chaque répertoire sous `checkpoints/` représente un état accepté du produit. Un checkpoint comprend le code, les tests et les métadonnées nécessaires pour reprendre la formation au début du jalon suivant.
 
+À partir de `0.2.0`, `src/sentinel.py` est seulement le point d'entrée stable. Le code est réparti en modules nommés par responsabilité. Chaque module possède une docstring qui indique la campagne ayant introduit la notion ; les commentaires expliquent les décisions de sécurité ou d'exploitation, pas la syntaxe Python évidente.
+
 Règles de maintenance :
 
 - un checkpoint déjà publié reste reproductible ;

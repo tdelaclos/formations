@@ -10,6 +10,10 @@ Nouveautés :
 - état créé par `StateDirectory=sentinel` ;
 - mêmes contrats CLI, HTTP, mTLS et identité que la version qualifiée.
 
+## Organisation du code
+
+Le lanceur `src/sentinel.py` reste installé comme `/usr/libexec/sentinel/sentinel`. Les modules Python voisins sont installés dans le même répertoire : la stabilisation `1.0.0` porte donc sur tout le graphe de modules, pas seulement sur le lanceur. Le sous-répertoire `packaging/` conserve la configuration et l'unité systemd.
+
 ```bash
 python3 src/sentinel.py --config config/sentinel.conf --check-config
 python3 src/sentinel.py --config /etc/sentinel/sentinel.conf serve
