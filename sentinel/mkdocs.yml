@@ -1,11 +1,14 @@
-site_name: Formation sentinel
+site_name: Formation Sentinel — AlmaLinux sécurisé
+site_description: Parcours pratique d'administration, de sécurité et d'industrialisation Linux autour de l'application Sentinel
+repo_url: https://github.com/tdelaclos/formations
+repo_name: tdelaclos/formations
 theme:
   name: readthedocs
 plugins:
     - search
     - mermaid2
 nav:
-  - Introduction: 'index.md'
+  - Accueil: 'index.md'
   - A propos:
     - Guide de rédaction: 'GUIDE-REDACTION.md'
     - Parcours applicatif Sentinel: 'PARCOURS-SENTINEL.md'
@@ -32,7 +35,7 @@ nav:
       - campagne_02/2.8-sudo-avance.md
       - campagne_02/2.9-fichiers-identites-linux.md
       - campagne_02/2.10-synthese-securiser-identites.md
-    - Campagne 3 -TCI/IP et Firewalld:
+    - Campagne 3 - TCP/IP et Firewalld:
       - campagne_03/3.1-tcp-ip-administrateur.md
       - campagne_03/3.2-architecture-firewalld.md
       - campagne_03/3.3-zones-firewalld.md
@@ -68,6 +71,14 @@ nav:
       - campagne_06/6.4-diagnostic-refus-selinux.md
       - campagne_06/6.5-creation-regles-selinux.md
       - campagne_06/6.6-securiser-sentinel-selinux.md
+    - Campagne 7 - TLS et PKI:
+      - campagne_07/7.1-comprendre-cryptographie-appliquee.md
+      - campagne_07/7.2-lire-verifier-certificats-x509.md
+      - campagne_07/7.3-construire-autorite-certification.md
+      - campagne_07/7.4-authentification-mutuelle-tls.md
+      - campagne_07/7.5-preparer-integration-freeipa.md
+      - campagne_07/7.6-renouveler-revoquer-certificats.md
+      - campagne_07/7.7-securiser-sentinel-tls.md
     - Campagne 8 - FreeIPA:
       - campagne_08/8.1-presentation-freeipa.md
       - campagne_08/8.2-architecture-interne-freeipa.md
@@ -78,9 +89,9 @@ nav:
       - campagne_08/8.7-gestion-hotes.md
       - campagne_08/8.8-certificats.md
       - campagne_08/8.9-integration-sentinel.md
+      - campagne_08/8.10-mission-administration-freeipa.md
     - Campagne 9 - Déploiement avec Ansible:
       - campagne_09/9.1-architecture-ansible.md
-      - campagne_09/9.10-mission-deploiement-sentinel.md
       - campagne_09/9.2-composants-ansible.md
       - campagne_09/9.3-inventaires.md
       - campagne_09/9.4-premiers-playbooks.md
@@ -89,6 +100,7 @@ nav:
       - campagne_09/9.7-deployer-sentinel-ansible.md
       - campagne_09/9.8-integrer-sentinel-freeipa.md
       - campagne_09/9.9-industrialiser-laboratoire.md
+      - campagne_09/9.10-mission-deploiement-sentinel.md
     - Campagne 10 - Packaging RPM:
       - campagne_10/10.1-construire-paquet-rpm.md
       - campagne_10/10.2-gerer-dependances-rpm.md
@@ -110,9 +122,6 @@ nav:
       - campagne_12/12.4-superviser-sentinel-prometheus.md
       - campagne_12/12.5-concevoir-alertes-alertmanager.md
       - campagne_12/12.6-construire-tableau-bord-sentinel.md
-
-
-
 
 
 
