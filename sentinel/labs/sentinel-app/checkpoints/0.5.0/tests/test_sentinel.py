@@ -5,12 +5,16 @@ from __future__ import annotations
 import importlib.util
 import json
 import pathlib
+import shutil
+import ssl
+import subprocess
 import sys
 import tempfile
 import threading
 import unittest
 import urllib.error
 import urllib.request
+from dataclasses import replace
 from unittest import mock
 
 
@@ -26,6 +30,41 @@ SPEC.loader.exec_module(SENTINEL)
 
 
 class SentinelTests(unittest.TestCase):
+    def issue_certificate(
+        self,
+        root: pathlib.Path,
+        name: str,
+        ca_certificate: pathlib.Path,
+        ca_key: pathlib.Path,
+        usage: str,
+    ) -> tuple[pathlib.Path, pathlib.Path]:
+        """Émet une identité éphémère pour le test mTLS de la campagne 7."""
+
+        key = root / f"{name}.key"
+        request = root / f"{name}.csr"
+        certificate = root / f"{name}.crt"
+        subprocess.run(
+            [
+                "openssl", "req", "-new", "-newkey", "rsa:2048", "-nodes",
+                "-keyout", str(key), "-out", str(request), "-subj", f"/CN={name}",
+                "-addext", f"subjectAltName=DNS:{name}",
+                "-addext", f"extendedKeyUsage={usage}",
+            ],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            [
+                "openssl", "x509", "-req", "-in", str(request),
+                "-CA", str(ca_certificate), "-CAkey", str(ca_key),
+                "-CAcreateserial", "-out", str(certificate), "-days", "1",
+                "-copy_extensions", "copy",
+            ],
+            check=True,
+            capture_output=True,
+        )
+        return certificate, key
+
     def setUp(self) -> None:
         self.temporary = tempfile.TemporaryDirectory()
         root = pathlib.Path(self.temporary.name)
@@ -98,6 +137,75 @@ class SentinelTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(SENTINEL.ConfigurationError, "TLS"):
             SENTINEL.load_settings(config)
+
+    @unittest.skipUnless(shutil.which("openssl"), "openssl requis")
+    def test_mtls_accepts_a_signed_client_and_rejects_anonymous(self) -> None:
+        """Prouve le canal réel, pas seulement la présence des options TLS."""
+
+        root = pathlib.Path(self.temporary.name) / "pki"
+        root.mkdir()
+        ca_key = root / "ca.key"
+        ca_certificate = root / "ca.crt"
+        subprocess.run(
+            [
+                "openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes",
+                "-keyout", str(ca_key), "-out", str(ca_certificate),
+                "-subj", "/CN=Sentinel Campaign 7 Test CA", "-days", "1",
+                "-addext", "basicConstraints=critical,CA:TRUE",
+            ],
+            check=True,
+            capture_output=True,
+        )
+        server_certificate, server_key = self.issue_certificate(
+            root, "localhost", ca_certificate, ca_key, "serverAuth"
+        )
+        client_certificate, client_key = self.issue_certificate(
+            root, "healthcheck.sentinel.lab", ca_certificate, ca_key, "clientAuth"
+        )
+
+        settings = SENTINEL.Settings(
+            root / "state",
+            "127.0.0.1",
+            0,
+            "INFO",
+            True,
+            server_certificate,
+            server_key,
+            ca_certificate,
+            True,
+            client_certificate,
+            client_key,
+        )
+        SENTINEL.write_status(settings, SENTINEL.collect_status())
+        server = SENTINEL.create_server(settings)
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        url = f"https://localhost:{server.server_port}/health"
+
+        client_context = ssl.create_default_context(cafile=ca_certificate)
+        client_context.load_cert_chain(client_certificate, client_key)
+        anonymous_context = ssl.create_default_context(cafile=ca_certificate)
+        try:
+            with urllib.request.urlopen(
+                url, context=client_context, timeout=3
+            ) as response:
+                self.assertEqual(response.status, 200)
+
+            runtime = replace(
+                settings,
+                listen_port=server.server_port,
+                healthcheck_server_name="localhost",
+            )
+            self.assertTrue(SENTINEL.healthcheck(runtime))
+
+            with self.assertRaises((urllib.error.URLError, ssl.SSLError)):
+                urllib.request.urlopen(
+                    url, context=anonymous_context, timeout=3
+                )
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(timeout=2)
 
 
 if __name__ == "__main__":

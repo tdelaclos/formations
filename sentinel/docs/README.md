@@ -78,13 +78,13 @@ Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.m
 
 ### Campagne 7 — TLS et PKI
 
-1. Cryptographie appliquée
-2. Certificats X.509
-3. Autorité de certification
-4. Mutual TLS
-5. Intégration FreeIPA
-6. Rotation des certificats
-7. Sécurisation TLS de Sentinel
+- [7.1 — Comprendre la cryptographie appliquée](campagne_07/7.1-comprendre-cryptographie-appliquee.md)
+- [7.2 — Lire et vérifier les certificats X.509](campagne_07/7.2-lire-verifier-certificats-x509.md)
+- [7.3 — Construire une autorité de certification](campagne_07/7.3-construire-autorite-certification.md)
+- [7.4 — Authentifier les deux extrémités avec mTLS](campagne_07/7.4-authentification-mutuelle-tls.md)
+- [7.5 — Préparer l'intégration à FreeIPA](campagne_07/7.5-preparer-integration-freeipa.md)
+- [7.6 — Renouveler et révoquer les certificats](campagne_07/7.6-renouveler-revoquer-certificats.md)
+- [7.7 — Sécuriser Sentinel avec TLS](campagne_07/7.7-securiser-sentinel-tls.md)
 
 ## Partie II — Industrialiser la sécurité
 
