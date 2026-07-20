@@ -53,10 +53,10 @@ Une campagne peut donc renforcer, déployer ou administrer Sentinel sans changer
 | `0.3.0` | 3 | serveur HTTP, `/health` et `/api/v1/status` | écoute réelle, filtrage et requête distante |
 | `0.3.0` | 4 | code inchangé, administration distante sécurisée | déploiement et diagnostic via bastion |
 | `0.4.0` | 5 | processus durable, signaux, journaux et modes de panne contrôlés | unité systemd et scénarios de reprise |
-| `0.5.0` | 6 | contrat stable des fichiers, sockets et accès réseau | domaine SELinux et tests AVC |
-| `0.6.0` | 7 | TLS puis authentification mutuelle | chaîne de confiance et refus d'un client non autorisé |
-| `0.7.0` | 8 | identité de l'hôte et autorisation issue de FreeIPA | certificat renouvelable et identité vérifiée |
-| `0.7.0` | 9 | code inchangé, déploiement multi-hôte reproductible | idempotence et tests fonctionnels Ansible |
+| `0.4.0` | 6 | code inchangé, contrat des fichiers et accès réels confiné | politique SELinux versionnée et tests AVC |
+| `0.5.0` | 7 | TLS puis authentification mutuelle | chaîne de confiance et refus d'un client non autorisé |
+| `0.6.0` | 8 | identité de l'hôte et autorisation issue de FreeIPA | certificat renouvelable et identité vérifiée |
+| `0.6.0` | 9 | code inchangé, déploiement multi-hôte reproductible | idempotence et tests fonctionnels Ansible |
 | `1.0.0` | 10 | interfaces stabilisées et paquet RPM | installation, mise à niveau, vérification et retrait |
 | `1.1.0` | 11 | exécution compatible avec un conteneur rootless | image immuable, healthcheck et arrêt propre |
 | `1.2.0` | 12 | `/metrics`, compteurs, latence et information de build | requêtes PromQL, alertes et tableau de bord |
