@@ -90,9 +90,9 @@ nav:
       - campagne_08/8.8-certificats.md
       - campagne_08/8.9-integration-sentinel.md
       - campagne_08/8.10-mission-administration-freeipa.md
-    - Campagne 9 - Déploiement avec Ansible:
-      - campagne_09/9.1-architecture-ansible.md
-      - campagne_09/9.2-composants-ansible.md
+    - Campagne 9 - Industrialisation avec Ansible:
+      - campagne_09/9.1-pourquoi-automatiser-avec-ansible.md
+      - campagne_09/9.2-comprendre-architecture-ansible.md
       - campagne_09/9.3-inventaires.md
       - campagne_09/9.4-premiers-playbooks.md
       - campagne_09/9.5-variables-templates.md
@@ -122,7 +122,6 @@ nav:
       - campagne_12/12.4-superviser-sentinel-prometheus.md
       - campagne_12/12.5-concevoir-alertes-alertmanager.md
       - campagne_12/12.6-construire-tableau-bord-sentinel.md
-
 
 
 

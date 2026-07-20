@@ -18,7 +18,7 @@ Vous pouvez suivre le parcours depuis le début ou rejoindre directement un thè
 | confiner un processus compromis | [Campagne 6 — SELinux](campagne_06/6.1-pourquoi-selinux-existe.md) |
 | protéger et authentifier les échanges | [Campagne 7 — TLS et PKI](campagne_07/7.1-comprendre-cryptographie-appliquee.md) |
 | centraliser les identités | [Campagne 8 — FreeIPA](campagne_08/8.1-presentation-freeipa.md) |
-| automatiser un déploiement multi-hôte | [Campagne 9 — Ansible](campagne_09/9.1-architecture-ansible.md) |
+| automatiser un déploiement multi-hôte | [Campagne 9 — Ansible](campagne_09/9.1-pourquoi-automatiser-avec-ansible.md) |
 | livrer un composant natif AlmaLinux | [Campagne 10 — RPM](campagne_10/10.1-construire-paquet-rpm.md) |
 | exécuter Sentinel en conteneur rootless | [Campagne 11 — Podman](campagne_11/11.1-decouvrir-podman.md) |
 | superviser et auditer la plateforme | [Campagne 12 — Observabilité](campagne_12/12.1-centraliser-journaux-rsyslog.md) |

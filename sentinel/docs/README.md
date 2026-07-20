@@ -103,8 +103,8 @@ Les campagnes 1 à 12 sont rédigées. Les campagnes 13 et 14 restent planifiée
 
 ### Campagne 9 — Industrialisation avec Ansible
 
-- [9.1 — Architecture Ansible](campagne_09/9.1-architecture-ansible.md)
-- [9.2 — Architecture d'Ansible](campagne_09/9.2-composants-ansible.md)
+- [9.1 — Pourquoi automatiser avec Ansible ?](campagne_09/9.1-pourquoi-automatiser-avec-ansible.md)
+- [9.2 — Comprendre l'architecture d'Ansible](campagne_09/9.2-comprendre-architecture-ansible.md)
 - [9.3 — Inventaires](campagne_09/9.3-inventaires.md)
 - [9.4 — Premiers playbooks](campagne_09/9.4-premiers-playbooks.md)
 - [9.5 — Variables et templates](campagne_09/9.5-variables-templates.md)
