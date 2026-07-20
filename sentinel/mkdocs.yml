@@ -6,7 +6,9 @@ plugins:
     - mermaid2
 nav:
   - Introduction: 'index.md'
-  - A propos: 'GUIDE-REDACTION.md'
+  - A propos:
+    - Guide de rédaction: 'GUIDE-REDACTION.md'
+    - Parcours applicatif Sentinel: 'PARCOURS-SENTINEL.md'
   - Campagnes:
     - Campagne 1 - Sécuriser le socle Linux:
       - campagne_01/1.1-pourquoi-securiser-socle-linux.md
@@ -101,7 +103,6 @@ nav:
       - campagne_11/11.4-reseaux-conteneurs.md
       - campagne_11/11.5-gerer-secrets-podman.md
       - campagne_11/11.6-executer-sentinel-securite.md
-
 
 
 
