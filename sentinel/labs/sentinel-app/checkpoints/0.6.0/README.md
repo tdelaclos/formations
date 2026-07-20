@@ -7,7 +7,8 @@ Nouveautés :
 - validation cryptographique de la chaîne cliente ;
 - extraction des identités `DNS` du `subjectAltName` ;
 - liste fermée `allowed_dns_names` ;
-- réponse HTTP 403 pour un certificat de confiance dont l'identité n'est pas autorisée.
+- réponse HTTP 403 pour un certificat de confiance dont l'identité n'est pas autorisée ;
+- healthcheck mTLS utilisant le nom présent dans le SAN du serveur.
 
 ```bash
 python3 src/sentinel.py --config config/sentinel.conf --check-config

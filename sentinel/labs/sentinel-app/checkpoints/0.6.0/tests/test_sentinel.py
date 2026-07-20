@@ -14,6 +14,7 @@ import threading
 import unittest
 import urllib.error
 import urllib.request
+from dataclasses import replace
 from unittest import mock
 
 
@@ -204,6 +205,13 @@ class SentinelTests(unittest.TestCase):
                 timeout=3,
             ) as response:
                 self.assertEqual(response.status, 200)
+
+            runtime = replace(
+                settings,
+                listen_port=server.server_port,
+                healthcheck_server_name="localhost",
+            )
+            self.assertTrue(SENTINEL.healthcheck(runtime))
 
             with self.assertRaises(urllib.error.HTTPError) as denied:
                 urllib.request.urlopen(

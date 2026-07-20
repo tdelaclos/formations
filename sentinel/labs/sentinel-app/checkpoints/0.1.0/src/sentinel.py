@@ -8,6 +8,7 @@ import json
 import platform
 import socket
 from collections.abc import Sequence
+from typing import Optional
 
 
 VERSION = "0.1.0"
@@ -54,7 +55,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
 
     if args.command == "status":

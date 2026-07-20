@@ -19,11 +19,11 @@ import urllib.error
 import urllib.request
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 
 VERSION = "0.5.0"
@@ -41,12 +41,13 @@ class Settings:
     listen_port: int
     log_level: str
     tls_enabled: bool = False
-    tls_certificate: Path | None = None
-    tls_private_key: Path | None = None
-    tls_client_ca: Path | None = None
+    tls_certificate: Optional[Path] = None
+    tls_private_key: Optional[Path] = None
+    tls_client_ca: Optional[Path] = None
     tls_require_client_certificate: bool = False
-    healthcheck_certificate: Path | None = None
-    healthcheck_private_key: Path | None = None
+    healthcheck_certificate: Optional[Path] = None
+    healthcheck_private_key: Optional[Path] = None
+    healthcheck_server_name: Optional[str] = None
 
     @property
     def state_file(self) -> Path:
@@ -56,7 +57,7 @@ class Settings:
 class JsonFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         payload = {
-            "timestamp": datetime.now(UTC).isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "level": record.levelname,
             "logger": record.name,
             "message": record.getMessage(),
@@ -125,7 +126,7 @@ def load_settings(config_path: Path) -> Settings:
         "tls", "require_client_certificate", fallback=False
     )
 
-    def configured_path(section: str, option: str) -> Path | None:
+    def configured_path(section: str, option: str) -> Optional[Path]:
         value = parser.get(section, option, fallback="").strip()
         if not value:
             return None
@@ -139,6 +140,9 @@ def load_settings(config_path: Path) -> Settings:
     client_ca = configured_path("tls", "client_ca")
     health_certificate = configured_path("healthcheck", "certificate")
     health_private_key = configured_path("healthcheck", "private_key")
+    health_server_name = parser.get(
+        "healthcheck", "server_name", fallback=""
+    ).strip() or None
 
     if tls_enabled:
         required_files = [certificate, private_key]
@@ -161,6 +165,7 @@ def load_settings(config_path: Path) -> Settings:
         require_client,
         health_certificate,
         health_private_key,
+        health_server_name,
     )
 
 
@@ -265,7 +270,7 @@ def create_server(settings: Settings) -> SentinelServer:
     return server
 
 
-def sd_notify(message: str, environment: dict[str, str] | None = None) -> bool:
+def sd_notify(message: str, environment: Optional[dict[str, str]] = None) -> bool:
     env = os.environ if environment is None else environment
     address = env.get("NOTIFY_SOCKET")
     if not address:
@@ -303,7 +308,7 @@ def serve(settings: Settings) -> None:
 
 
 def healthcheck(settings: Settings) -> bool:
-    host = settings.listen_address
+    host = settings.healthcheck_server_name or settings.listen_address
     if host in {"0.0.0.0", "::"}:
         host = "127.0.0.1"
     scheme = "https" if settings.tls_enabled else "http"
@@ -340,7 +345,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.check_config:

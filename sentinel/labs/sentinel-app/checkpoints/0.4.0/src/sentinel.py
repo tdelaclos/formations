@@ -18,11 +18,11 @@ import urllib.error
 import urllib.request
 from collections.abc import Sequence
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 
 VERSION = "0.4.0"
@@ -48,7 +48,7 @@ class Settings:
 class JsonFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         payload = {
-            "timestamp": datetime.now(UTC).isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "level": record.levelname,
             "logger": record.name,
             "message": record.getMessage(),
@@ -203,7 +203,7 @@ def create_server(settings: Settings) -> SentinelServer:
     return SentinelServer((settings.listen_address, settings.listen_port), settings)
 
 
-def sd_notify(message: str, environment: dict[str, str] | None = None) -> bool:
+def sd_notify(message: str, environment: Optional[dict[str, str]] = None) -> bool:
     env = os.environ if environment is None else environment
     address = env.get("NOTIFY_SOCKET")
     if not address:
@@ -269,7 +269,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         if args.check_config:

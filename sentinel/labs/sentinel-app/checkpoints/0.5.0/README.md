@@ -7,6 +7,7 @@ Nouveautés :
 - contexte TLS serveur construit depuis la configuration ;
 - validation de la chaîne cliente par une autorité approuvée ;
 - certificat client distinct pour le healthcheck local ;
+- nom DNS du serveur vérifié séparément de l'adresse d'écoute ;
 - refus d'un pair sans certificat lorsque le mTLS est obligatoire.
 
 ```bash
