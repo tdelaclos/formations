@@ -2,6 +2,15 @@
 
 Ce checkpoint correspond à la fin de la campagne 2. Il conserve les commandes de la version 0.1.0 et ajoute une configuration validable ainsi qu'un état persistant.
 
+## Organisation du code
+
+- `sentinel.py` : point d'entrée et façade compatible ;
+- `cli.py` : orchestration des commandes ;
+- `configuration.py` : modèle et validation INI ;
+- `diagnostic.py` : diagnostic hérité de la campagne 1 ;
+- `state.py` : écriture atomique et lecture de l'état ;
+- `version.py` : version applicative unique.
+
 ```bash
 python3 src/sentinel.py --version
 python3 src/sentinel.py --config config/sentinel.conf --check-config

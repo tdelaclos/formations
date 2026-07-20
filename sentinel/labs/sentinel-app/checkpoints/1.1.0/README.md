@@ -10,6 +10,10 @@ Nouveautés :
 - histogramme de durée ;
 - état de la dépendance locale et date du dernier diagnostic réussi.
 
+## Organisation du code
+
+`metrics.py` possède le registre, les buckets et le rendu Prometheus. `web.py` mesure les requêtes et normalise les routes avant de transmettre les observations. Cette frontière permet d'étudier la cardinalité sans mélanger son raisonnement avec TLS, systemd ou la CLI.
+
 ```bash
 python3 src/sentinel.py --config config/sentinel.conf --check-config
 python3 src/sentinel.py --config /etc/sentinel/sentinel.conf serve

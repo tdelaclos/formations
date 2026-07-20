@@ -10,6 +10,10 @@ Nouveautés :
 - réponse HTTP 403 pour un certificat de confiance dont l'identité n'est pas autorisée ;
 - healthcheck mTLS utilisant le nom présent dans le SAN du serveur.
 
+## Organisation du code
+
+Le nouveau module `identity.py` intervient après `tls_support.py` : TLS valide la chaîne de confiance, puis l'application compare les SAN DNS à la liste autorisée. Le code rend ainsi visible la différence pédagogique entre authentification et autorisation.
+
 ```bash
 python3 src/sentinel.py --config config/sentinel.conf --check-config
 python3 src/sentinel.py --config /etc/sentinel/sentinel.conf serve

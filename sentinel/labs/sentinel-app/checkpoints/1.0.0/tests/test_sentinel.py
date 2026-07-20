@@ -20,6 +20,8 @@ from unittest import mock
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 PROGRAM = ROOT / "src" / "sentinel.py"
+sys.path.insert(0, str(ROOT / "src"))
+import runtime as RUNTIME
 SPEC = importlib.util.spec_from_file_location("sentinel_app", PROGRAM)
 assert SPEC is not None and SPEC.loader is not None
 SENTINEL = importlib.util.module_from_spec(SPEC)
@@ -100,7 +102,7 @@ class SentinelTests(unittest.TestCase):
     def test_sd_notify_sends_datagram(self) -> None:
         root = pathlib.Path(self.temporary.name)
         path = root / "notify.sock"
-        with mock.patch.object(SENTINEL.socket, "socket") as socket_factory:
+        with mock.patch.object(RUNTIME.socket, "socket") as socket_factory:
             notifier = socket_factory.return_value.__enter__.return_value
             self.assertTrue(SENTINEL.sd_notify("READY=1", {"NOTIFY_SOCKET": str(path)}))
             notifier.connect.assert_called_once_with(str(path))

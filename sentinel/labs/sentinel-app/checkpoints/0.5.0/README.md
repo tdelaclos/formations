@@ -10,6 +10,10 @@ Nouveautés :
 - nom DNS du serveur vérifié séparément de l'adresse d'écoute ;
 - refus d'un pair sans certificat lorsque le mTLS est obligatoire.
 
+## Organisation du code
+
+`tls_support.py` construit séparément les contextes serveur et healthcheck. `configuration.py` vérifie les chemins avant le démarrage, `web.py` protège la socket et `runtime.py` effectue la sonde cliente. Cette séparation matérialise les deux extrémités de la connexion TLS étudiée en campagne 7.
+
 ```bash
 python3 src/sentinel.py --config config/sentinel.conf --check-config
 python3 src/sentinel.py --config /etc/sentinel/sentinel.conf serve

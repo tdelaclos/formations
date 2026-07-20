@@ -15,7 +15,7 @@ VERSION = "0.1.0"
 
 
 def collect_status() -> dict[str, str]:
-    """Retourne un diagnostic local court et sérialisable."""
+    """Retourne le diagnostic local construit pendant la campagne 1."""
 
     return {
         "application": "sentinel",
@@ -28,7 +28,7 @@ def collect_status() -> dict[str, str]:
 
 
 def render_status(status: dict[str, str], output_format: str) -> str:
-    """Produit une sortie stable pour un humain ou un autre programme."""
+    """Sépare le contrat humain du contrat JSON destiné à l'automatisation."""
 
     if output_format == "json":
         return json.dumps(status, ensure_ascii=False, sort_keys=True)
@@ -38,6 +38,8 @@ def render_status(status: dict[str, str], output_format: str) -> str:
 
 
 def build_parser() -> argparse.ArgumentParser:
+    # Le premier checkpoint reste dans un fichier unique : ses responsabilités
+    # tiennent encore en moins de 70 lignes et sont abordables par un débutant.
     parser = argparse.ArgumentParser(
         prog="sentinel",
         description="Diagnostic local du laboratoire Sentinel",
