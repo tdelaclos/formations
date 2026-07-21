@@ -26,7 +26,7 @@ Les campagnes 1 à 12 sont disponibles. Les campagnes 13, consacrée aux scénar
 | [6](sentinel/docs/campagne_06/6.1-pourquoi-selinux-existe.md) | SELinux | processus Sentinel confiné |
 | [7](sentinel/docs/campagne_07/7.1-comprendre-cryptographie-appliquee.md) | TLS et PKI | canal TLS ou mTLS et Sentinel `0.5.0` |
 | [8](sentinel/docs/campagne_08/8.1-presentation-freeipa.md) | FreeIPA | identités et certificats centralisés |
-| [9](sentinel/docs/campagne_09/9.1-architecture-ansible.md) | Ansible | déploiement multi-hôte reproductible |
+| [9](sentinel/docs/campagne_09/9.1-pourquoi-automatiser-avec-ansible.md) | Ansible | déploiement multi-hôte reproductible |
 | [10](sentinel/docs/campagne_10/10.1-construire-paquet-rpm.md) | RPM | paquet signé et dépôt privé |
 | [11](sentinel/docs/campagne_11/11.1-decouvrir-podman.md) | Podman | exécution rootless de Sentinel |
 | [12](sentinel/docs/campagne_12/12.1-centraliser-journaux-rsyslog.md) | supervision et audit | journaux, audit, intégrité, métriques et alertes |
