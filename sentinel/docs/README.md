@@ -90,21 +90,21 @@ Les campagnes 1 à 12 sont rédigées. Les campagnes 13 et 14 restent planifiée
 
 ### Campagne 8 — FreeIPA
 
-- [8.1 — Présentation de FreeIPA](campagne_08/8.1-presentation-freeipa.md)
-- [8.2 — Architecture interne de FreeIPA](campagne_08/8.2-architecture-interne-freeipa.md)
-- [8.3 — Installation de FreeIPA](campagne_08/8.3-installation-freeipa.md)
-- [8.4 — Gestion des utilisateurs](campagne_08/8.4-gestion-utilisateurs.md)
-- [8.5 — Groupes et rôles](campagne_08/8.5-groupes-roles.md)
-- [8.6 — Politiques `sudo`](campagne_08/8.6-politiques-sudo.md)
-- [8.7 — Gestion des hôtes](campagne_08/8.7-gestion-hotes.md)
-- [8.8 — Certificats](campagne_08/8.8-certificats.md)
-- [8.9 — Intégration de Sentinel](campagne_08/8.9-integration-sentinel.md)
-- [8.10 — Mission : administrer avec FreeIPA](campagne_08/8.10-mission-administration-freeipa.md)
+- [8.1 — Découvrir FreeIPA et la gestion centralisée des identités](campagne_08/8.1-presentation-freeipa.md)
+- [8.2 — Comprendre l'architecture interne de FreeIPA](campagne_08/8.2-architecture-interne-freeipa.md)
+- [8.3 — Installer un serveur FreeIPA de laboratoire](campagne_08/8.3-installation-freeipa.md)
+- [8.4 — Gérer le cycle de vie des utilisateurs FreeIPA](campagne_08/8.4-gestion-utilisateurs.md)
+- [8.5 — Organiser les groupes et les rôles FreeIPA](campagne_08/8.5-groupes-roles.md)
+- [8.6 — Centraliser les politiques `sudo` avec FreeIPA](campagne_08/8.6-politiques-sudo.md)
+- [8.7 — Enrôler les hôtes et contrôler les accès avec HBAC](campagne_08/8.7-gestion-hotes.md)
+- [8.8 — Gérer les certificats de service avec FreeIPA](campagne_08/8.8-certificats.md)
+- [8.9 — Intégrer Sentinel à FreeIPA](campagne_08/8.9-integration-sentinel.md)
+- [8.10 — Mission : administrer Sentinel avec FreeIPA](campagne_08/8.10-mission-administration-freeipa.md)
 
 ### Campagne 9 — Industrialisation avec Ansible
 
-- [9.1 — Pourquoi automatiser avec Ansible ?](campagne_09/9.1-pourquoi-automatiser-avec-ansible.md)
-- [9.2 — Comprendre l'architecture d'Ansible](campagne_09/9.2-comprendre-architecture-ansible.md)
+- [9.1 — Architecture Ansible](campagne_09/9.1-architecture-ansible.md)
+- [9.2 — Architecture d'Ansible](campagne_09/9.2-composants-ansible.md)
 - [9.3 — Inventaires](campagne_09/9.3-inventaires.md)
 - [9.4 — Premiers playbooks](campagne_09/9.4-premiers-playbooks.md)
 - [9.5 — Variables et templates](campagne_09/9.5-variables-templates.md)
