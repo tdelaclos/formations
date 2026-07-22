@@ -1,0 +1,10 @@
+---
+- name: Enrôler les clients dans FreeIPA
+  hosts: ipaclients
+  become: true
+  gather_facts: true
+  vars:
+    ipaadmin_password: "{{ vault_ipaadmin_password }}"
+  roles:
+    - role: freeipa.ansible_freeipa.ipaclient
+      state: present

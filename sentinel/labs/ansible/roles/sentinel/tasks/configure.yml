@@ -1,0 +1,42 @@
+---
+- name: Déployer la configuration Sentinel
+  ansible.builtin.template:
+    src: sentinel.conf.j2
+    dest: "{{ sentinel_config_path }}"
+    owner: root
+    group: "{{ sentinel_service_group }}"
+    mode: "0640"
+    validate: >-
+      /usr/bin/python3 {{ sentinel_entrypoint }}
+      --config %s --check-config
+  notify: Redémarrer Sentinel
+
+- name: Déployer l'unité systemd Sentinel
+  ansible.builtin.template:
+    src: sentinel.service.j2
+    dest: /etc/systemd/system/sentinel.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Recharger systemd
+    - Redémarrer Sentinel
+
+- name: Restaurer les contextes SELinux attendus
+  ansible.builtin.command:
+    argv:
+      - restorecon
+      - -RF
+      - "{{ sentinel_install_root }}"
+      - "{{ sentinel_config_directory }}"
+      - "{{ sentinel_state_directory }}"
+  changed_when: false
+
+- name: Appliquer les handlers avant la validation fonctionnelle
+  ansible.builtin.meta: flush_handlers
+
+- name: Activer et démarrer Sentinel
+  ansible.builtin.systemd_service:
+    name: "{{ sentinel_unit_name }}"
+    enabled: true
+    state: started

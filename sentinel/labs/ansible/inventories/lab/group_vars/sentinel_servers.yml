@@ -1,0 +1,14 @@
+---
+sentinel_version: "0.6.0"
+sentinel_listen_address: 0.0.0.0
+sentinel_listen_port: 8443
+sentinel_log_level: INFO
+
+# Le premier passage reste exécutable sans matériau privé dans Git.
+# Le chapitre 9.8 obtient les certificats sur les hôtes avant d'activer TLS.
+sentinel_tls_enabled: false
+sentinel_require_client_certificate: true
+sentinel_healthcheck_server_name: sentinel01.sentinel.example.test
+sentinel_allowed_dns_names:
+  - healthcheck.sentinel.example.test
+  - agent01.sentinel.example.test

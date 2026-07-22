@@ -1,0 +1,7 @@
+---
+- name: Déployer Sentinel 0.6.0
+  hosts: sentinel_servers
+  become: true
+  gather_facts: true
+  roles:
+    - role: sentinel

@@ -1,0 +1,54 @@
+---
+- name: Installer les dépendances d'exécution
+  ansible.builtin.package:
+    name:
+      - python3
+    state: present
+
+- name: Créer le groupe système Sentinel
+  ansible.builtin.group:
+    name: "{{ sentinel_service_group }}"
+    system: true
+    state: present
+
+- name: Créer le compte système Sentinel
+  ansible.builtin.user:
+    name: "{{ sentinel_service_user }}"
+    group: "{{ sentinel_service_group }}"
+    system: true
+    create_home: false
+    shell: /sbin/nologin
+    state: present
+
+- name: Créer les répertoires Sentinel
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - path: "{{ sentinel_install_root }}/src"
+      owner: root
+      group: "{{ sentinel_service_group }}"
+      mode: "0750"
+    - path: "{{ sentinel_config_directory }}"
+      owner: root
+      group: "{{ sentinel_service_group }}"
+      mode: "0750"
+    - path: "{{ sentinel_state_directory }}"
+      owner: "{{ sentinel_service_user }}"
+      group: "{{ sentinel_service_group }}"
+      mode: "0750"
+  loop_control:
+    label: "{{ item.path }}"
+
+- name: Déployer les sources Sentinel
+  ansible.builtin.copy:
+    src: "{{ sentinel_source_checkpoint }}/src/"
+    dest: "{{ sentinel_install_root }}/src/"
+    owner: root
+    group: "{{ sentinel_service_group }}"
+    mode: preserve
+    directory_mode: "0750"
+  notify: Redémarrer Sentinel

@@ -1,0 +1,9 @@
+---
+- name: Enrôler les hôtes FreeIPA
+  ansible.builtin.import_playbook: enroll-freeipa.yml
+
+- name: Déployer Sentinel
+  ansible.builtin.import_playbook: deploy-sentinel.yml
+
+- name: Vérifier Sentinel
+  ansible.builtin.import_playbook: verify.yml

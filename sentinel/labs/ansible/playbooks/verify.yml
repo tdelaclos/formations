@@ -1,0 +1,10 @@
+---
+- name: Vérifier le déploiement Sentinel
+  hosts: sentinel_servers
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Exécuter les contrôles du rôle Sentinel
+      ansible.builtin.include_role:
+        name: sentinel
+        tasks_from: verify.yml
