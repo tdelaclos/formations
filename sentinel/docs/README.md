@@ -101,18 +101,18 @@ Les campagnes 1 à 12 sont rédigées. Les campagnes 13 et 14 restent planifiée
 - [8.9 — Intégrer Sentinel à FreeIPA](campagne_08/8.9-integration-sentinel.md)
 - [8.10 — Mission : administrer Sentinel avec FreeIPA](campagne_08/8.10-mission-administration-freeipa.md)
 
-### Campagne 9 — Industrialisation avec Ansible
+### Campagne 9 — Déploiement avec Ansible
 
-- [9.1 — Architecture Ansible](campagne_09/9.1-architecture-ansible.md)
-- [9.2 — Architecture d'Ansible](campagne_09/9.2-composants-ansible.md)
-- [9.3 — Inventaires](campagne_09/9.3-inventaires.md)
-- [9.4 — Premiers playbooks](campagne_09/9.4-premiers-playbooks.md)
-- [9.5 — Variables et templates](campagne_09/9.5-variables-templates.md)
-- [9.6 — Les rôles Ansible](campagne_09/9.6-roles-ansible.md)
+- [9.1 — Comprendre l'architecture Ansible](campagne_09/9.1-architecture-ansible.md)
+- [9.2 — Comprendre les composants et l'idempotence Ansible](campagne_09/9.2-composants-ansible.md)
+- [9.3 — Construire les inventaires Ansible](campagne_09/9.3-inventaires.md)
+- [9.4 — Écrire les premiers playbooks](campagne_09/9.4-premiers-playbooks.md)
+- [9.5 — Piloter la configuration avec variables et templates](campagne_09/9.5-variables-templates.md)
+- [9.6 — Concevoir des rôles Ansible réutilisables](campagne_09/9.6-roles-ansible.md)
 - [9.7 — Déployer Sentinel avec Ansible](campagne_09/9.7-deployer-sentinel-ansible.md)
-- [9.8 — Intégrer Sentinel à FreeIPA](campagne_09/9.8-integrer-sentinel-freeipa.md)
-- [9.9 — Industrialiser le laboratoire](campagne_09/9.9-industrialiser-laboratoire.md)
-- [9.10 — Mission : déployer l'infrastructure Sentinel](campagne_09/9.10-mission-deploiement-sentinel.md)
+- [9.8 — Automatiser l'intégration de Sentinel à FreeIPA](campagne_09/9.8-integrer-sentinel-freeipa.md)
+- [9.9 — Industrialiser le projet Ansible](campagne_09/9.9-industrialiser-laboratoire.md)
+- [9.10 — Mission : reconstruire Sentinel avec Ansible](campagne_09/9.10-mission-deploiement-sentinel.md)
 
 ### Campagne 10 — RPM et cycle de vie
 

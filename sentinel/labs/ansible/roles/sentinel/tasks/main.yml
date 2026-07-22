@@ -1,0 +1,12 @@
+---
+- name: Valider le contrat du rôle
+  ansible.builtin.import_tasks: validate.yml
+
+- name: Installer Sentinel
+  ansible.builtin.import_tasks: install.yml
+
+- name: Configurer Sentinel
+  ansible.builtin.import_tasks: configure.yml
+
+- name: Vérifier Sentinel
+  ansible.builtin.import_tasks: verify.yml

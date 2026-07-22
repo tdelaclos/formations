@@ -1,0 +1,45 @@
+---
+- name: Vérifier la version Sentinel
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - "{{ sentinel_entrypoint }}"
+      - --version
+  register: sentinel_version_result
+  changed_when: false
+
+- name: Vérifier la version attendue
+  ansible.builtin.assert:
+    that:
+      - sentinel_version in sentinel_version_result.stdout
+    fail_msg: >-
+      Version {{ sentinel_version }} attendue,
+      sortie reçue {{ sentinel_version_result.stdout }}.
+
+- name: Vérifier la configuration installée
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - "{{ sentinel_entrypoint }}"
+      - --config
+      - "{{ sentinel_config_path }}"
+      - --check-config
+  changed_when: false
+
+- name: Vérifier que systemd voit Sentinel actif
+  ansible.builtin.command:
+    argv:
+      - systemctl
+      - is-active
+      - "{{ sentinel_unit_name }}"
+  changed_when: false
+
+- name: Exécuter le healthcheck Sentinel
+  ansible.builtin.command:
+    argv:
+      - /usr/bin/python3
+      - "{{ sentinel_entrypoint }}"
+      - --config
+      - "{{ sentinel_config_path }}"
+      - --healthcheck
+  changed_when: false

@@ -1,0 +1,17 @@
+---
+- name: Valider les entrées du rôle Sentinel
+  ansible.builtin.assert:
+    that:
+      - sentinel_version == "0.6.0"
+      - sentinel_source_checkpoint is directory
+      - sentinel_listen_port | int >= 1024
+      - sentinel_listen_port | int <= 65535
+      - not sentinel_tls_enabled or sentinel_allowed_dns_names | length > 0
+    fail_msg: Le contrat du rôle Sentinel n'est pas satisfait.
+
+- name: Valider la plateforme administrée
+  ansible.builtin.assert:
+    that:
+      - ansible_facts.os_family == "RedHat"
+      - ansible_facts.distribution_major_version | int >= 9
+    fail_msg: Le rôle Sentinel exige une distribution compatible RHEL 9 ou ultérieure.

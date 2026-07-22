@@ -1,0 +1,27 @@
+---
+sentinel_version: "0.6.0"
+sentinel_source_checkpoint: >-
+  {{ playbook_dir }}/../../sentinel-app/checkpoints/{{ sentinel_version }}
+
+sentinel_service_user: sentinel
+sentinel_service_group: sentinel
+sentinel_install_root: /opt/sentinel
+sentinel_config_directory: /etc/sentinel
+sentinel_config_path: /etc/sentinel/sentinel.conf
+sentinel_state_directory: /var/lib/sentinel
+
+sentinel_listen_address: 127.0.0.1
+sentinel_listen_port: 8443
+sentinel_log_level: INFO
+
+sentinel_tls_enabled: false
+sentinel_tls_certificate: /etc/sentinel/tls/server.crt
+sentinel_tls_private_key: /etc/sentinel/tls/server.key
+sentinel_tls_client_ca: /etc/ipa/ca.crt
+sentinel_require_client_certificate: true
+sentinel_healthcheck_server_name: sentinel01.sentinel.example.test
+sentinel_healthcheck_certificate: /etc/sentinel/tls/healthcheck.crt
+sentinel_healthcheck_private_key: /etc/sentinel/tls/healthcheck.key
+sentinel_allowed_dns_names:
+  - healthcheck.sentinel.example.test
+  - agent01.sentinel.example.test

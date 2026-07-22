@@ -1,0 +1,9 @@
+---
+- name: Recharger systemd
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: Redémarrer Sentinel
+  ansible.builtin.systemd_service:
+    name: "{{ sentinel_unit_name }}"
+    state: restarted

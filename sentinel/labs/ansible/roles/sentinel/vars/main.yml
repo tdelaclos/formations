@@ -1,0 +1,3 @@
+---
+sentinel_entrypoint: "{{ sentinel_install_root }}/src/sentinel.py"
+sentinel_unit_name: sentinel.service

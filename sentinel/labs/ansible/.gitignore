@@ -1,0 +1,5 @@
+.ansible/
+artifacts/
+*.retry
+.vault-password*
+inventories/*/group_vars/*/vault.yml

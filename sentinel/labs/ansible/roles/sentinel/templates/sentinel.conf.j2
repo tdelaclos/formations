@@ -1,0 +1,25 @@
+# Ce fichier est géré par Ansible. Toute modification locale sera remplacée.
+[server]
+listen_address = {{ sentinel_listen_address }}
+listen_port = {{ sentinel_listen_port }}
+
+[storage]
+state_directory = {{ sentinel_state_directory }}
+
+[logging]
+level = {{ sentinel_log_level }}
+
+[tls]
+enabled = {{ sentinel_tls_enabled | bool | lower }}
+certificate = {{ sentinel_tls_certificate }}
+private_key = {{ sentinel_tls_private_key }}
+client_ca = {{ sentinel_tls_client_ca }}
+require_client_certificate = {{ sentinel_require_client_certificate | bool | lower }}
+
+[healthcheck]
+server_name = {{ sentinel_healthcheck_server_name }}
+certificate = {{ sentinel_healthcheck_certificate }}
+private_key = {{ sentinel_healthcheck_private_key }}
+
+[identity]
+allowed_dns_names = {{ sentinel_allowed_dns_names | join(', ') }}
