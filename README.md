@@ -1,6 +1,6 @@
 # Formation Sentinel
 
-Ce dépôt contient une formation progressive à l'administration et à la sécurité d'un socle AlmaLinux. Une application Python appelée **Sentinel** sert de fil rouge : elle commence comme un diagnostic local, devient un service réseau, puis est confinée, chiffrée, automatisée, empaquetée, conteneurisée et supervisée.
+Ce dépôt contient une formation progressive à l'administration et à la sécurité d'un socle AlmaLinux. Une application Python appelée **Sentinel** sert de fil rouge : elle commence comme un diagnostic local, devient un service réseau, puis est confinée, chiffrée, automatisée, empaquetée, conteneurisée, supervisée et finalement qualifiée par un audit de bout en bout.
 
 ## Lire la formation sur GitHub
 
@@ -12,7 +12,7 @@ Les liens suivants permettent de commencer sans installer d'outil :
 - [trajectoire de l'application Sentinel](sentinel/docs/PARCOURS-SENTINEL.md) ;
 - [code et tests des checkpoints](sentinel/labs/sentinel-app/README.md).
 
-Les campagnes 1 à 12 sont disponibles. Les campagnes 13, consacrée aux scénarios d'attaque et de défense, et 14, consacrée au projet final, restent prévues mais ne sont pas encore rédigées.
+Les campagnes 1 à 12 et la campagne 14 sont disponibles. La campagne 13, consacrée aux scénarios d'attaque et de défense, est en cours de rédaction et commence par la reconnaissance.
 
 ## Parcours disponible
 
@@ -26,10 +26,12 @@ Les campagnes 1 à 12 sont disponibles. Les campagnes 13, consacrée aux scénar
 | [6](sentinel/docs/campagne_06/6.1-pourquoi-selinux-existe.md) | SELinux | processus Sentinel confiné |
 | [7](sentinel/docs/campagne_07/7.1-comprendre-cryptographie-appliquee.md) | TLS et PKI | canal TLS ou mTLS et Sentinel `0.5.0` |
 | [8](sentinel/docs/campagne_08/8.1-presentation-freeipa.md) | FreeIPA | identités et certificats centralisés |
-| [9](sentinel/docs/campagne_09/9.1-pourquoi-automatiser-avec-ansible.md) | Ansible | déploiement multi-hôte reproductible |
+| [9](sentinel/docs/campagne_09/9.1-architecture-ansible.md) | Ansible | déploiement multi-hôte reproductible |
 | [10](sentinel/docs/campagne_10/10.1-construire-paquet-rpm.md) | RPM | paquet signé et dépôt privé |
 | [11](sentinel/docs/campagne_11/11.1-decouvrir-podman.md) | Podman | exécution rootless de Sentinel |
 | [12](sentinel/docs/campagne_12/12.1-centraliser-journaux-rsyslog.md) | supervision et audit | journaux, audit, intégrité, métriques et alertes |
+| [13](sentinel/docs/campagne_13/13.1-reconnaissance.md) | attaques et défense | campagne en cours, reconnaissance depuis Kali |
+| [14](sentinel/docs/campagne_14/14.1-deployer-sentinel-almalinux-minimale.md) | projet final | plateforme `1.1.0` qualifiée et audit reproductible |
 
 ## Utiliser le site MkDocs
 
@@ -64,7 +66,7 @@ Le résultat est produit dans `sentinel/site/`. Ce répertoire généré n'est p
 Chaque checkpoint est autonome et contient son code, sa configuration de référence et ses tests.
 
 ```bash
-cd sentinel/labs/sentinel-app/checkpoints/0.5.0
+cd sentinel/labs/sentinel-app/checkpoints/1.1.0
 python3 src/sentinel.py --version
 python3 src/sentinel.py --config config/sentinel.conf --check-config
 python3 -m unittest discover -s tests -v
@@ -83,7 +85,7 @@ Consultez le [README de l'application](sentinel/labs/sentinel-app/README.md) pou
     │   ├── index.md
     │   ├── GUIDE-REDACTION.md
     │   ├── PARCOURS-SENTINEL.md
-    │   └── campagne_01/ ... campagne_12/
+    │   └── campagne_01/ ... campagne_14/
     └── labs/
         └── sentinel-app/
             └── checkpoints/

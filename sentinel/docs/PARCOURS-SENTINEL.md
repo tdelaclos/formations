@@ -61,9 +61,11 @@ Une campagne peut donc renforcer, déployer ou administrer Sentinel sans changer
 | `1.0.0` | 11 | code inchangé, image rootless du produit empaqueté | digest, healthcheck et arrêt propre |
 | `1.1.0` | 12 | `/metrics`, compteurs, latence et information de build | requêtes PromQL, alertes et tableau de bord |
 | `1.1.x` | 13 | code normalement inchangé, production de traces d'incident | détection et corrélation pendant les scénarios d'attaque |
-| `2.0.0` | 14 | assemblage qualifié du produit et de son infrastructure | audit final et tests d'acceptation de bout en bout |
+| `1.1.0` | 14 | code inchangé, assemblage qualifié du produit et de son infrastructure | audit final et tests d'acceptation de bout en bout |
 
 Cette numérotation décrit le scénario pédagogique. Elle ne prétend pas remplacer une politique de versionnement définie par une organisation.
+
+La campagne 14 avait initialement été planifiée comme un jalon `2.0.0`. L'état réel du dépôt ne contient toutefois aucun besoin applicatif ni checkpoint `2.0.0` : le projet final réutilise le contrat `1.1.0` et qualifie l'infrastructure, les modes de livraison et les preuves. Une future version majeure ne devra être créée que lorsqu'un changement du produit la justifiera.
 
 ## Contrats stables
 
