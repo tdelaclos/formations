@@ -122,12 +122,12 @@ nav:
       - campagne_12/12.4-superviser-sentinel-prometheus.md
       - campagne_12/12.5-concevoir-alertes-alertmanager.md
       - campagne_12/12.6-construire-tableau-bord-sentinel.md
-
-
-
-
-
-
-
-
-
+    - Campagne 14 - Projet final:
+      - campagne_14/14.1-deployer-sentinel-almalinux-minimale.md
+      - campagne_14/14.2-securiser-hote.md
+      - campagne_14/14.3-integrer-freeipa.md
+      - campagne_14/14.4-deployer-ansible.md
+      - campagne_14/14.5-packager-rpm.md
+      - campagne_14/14.6-conteneuriser-podman.md
+      - campagne_14/14.7-superviser-auditer.md
+      - campagne_14/14.8-audit-final-tests-kali.md
