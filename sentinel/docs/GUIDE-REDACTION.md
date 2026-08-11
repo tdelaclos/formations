@@ -29,6 +29,8 @@ Chaque chapitre respecte l'ordre général suivant :
 
 > **Campagne X — Nom de la campagne**
 
+> *« Citation éventuelle. »*
+
 ## Vous êtes ici
 
 Table des matières textuelle de la campagne.
@@ -51,16 +53,20 @@ Théorie, démonstrations, points d'expertise et mises en pratique.
 
 Notions et compétences à retenir.
 
-## Infographie de révision
+## Schéma récapitulatif
 
-Infographie finale éventuelle.
+Illustration éventuelle lorsqu'une image récapitulative pertinente existe déjà dans `media/`.
 
 ## Pour aller plus loin
 
 Transition éventuelle vers le chapitre suivant.
 ```
 
+Les trois premières sections de niveau 2 sont donc toujours, dans cet ordre : **Vous êtes ici**, **Objectifs pédagogiques**, puis **Pourquoi ce chapitre existe**. Le cartouche situé entre le titre et **Vous êtes ici** conserve le nom de la campagne et, lorsqu'elle existe, la citation du chapitre.
+
 Les chapitres de mission conservent cette ossature. Leur corps peut toutefois être organisé en contexte, contraintes, travail demandé, critères de réussite et livrables.
+
+La section **Schéma récapitulatif** est facultative. Elle sert uniquement à afficher une illustration de synthèse réellement disponible ; elle ne doit pas conduire à fabriquer artificiellement une image pour chaque chapitre.
 
 ## Jalons de l'application Sentinel
 
@@ -88,19 +94,34 @@ Les extraits proposés doivent être exécutables ou indiquer sans ambiguïté l
 
 ## Diagrammes
 
-Les représentations conceptuelles et les flux utilisent Mermaid. Le type de diagramme doit correspondre au message :
+Les représentations conceptuelles et les flux utilisent Mermaid lorsque le diagramme apporte une information plus claire que le texte seul. Le type de diagramme doit correspondre au message :
 
-- `flowchart` pour une chaîne de traitement ou une architecture ;
+- `flowchart` pour une chaîne de traitement, une architecture ou plusieurs relations ;
 - `sequenceDiagram` pour des échanges entre composants ;
 - `stateDiagram-v2` pour un cycle de vie ;
 - `classDiagram`, `mindmap`, `timeline` ou d'autres syntaxes Mermaid lorsqu'elles sont plus pertinentes.
 
-Deux exceptions restent volontairement textuelles ou graphiques :
+Un diagramme n'est pas ajouté uniquement pour illustrer deux mots ou une relation triviale déjà expliquée par la phrase qui l'entoure. Dans un chapitre riche en schémas, privilégier quelques représentations structurantes plutôt qu'une succession de micro-flowcharts.
 
-1. la table des matières placée dans **Vous êtes ici** ;
-2. l'infographie récapitulative placée en fin de chapitre.
+La table des matières placée dans **Vous êtes ici** reste volontairement textuelle. Les sorties de commandes, arborescences de fichiers, configurations et extraits de journaux ne sont pas des diagrammes : ils restent dans des blocs de code adaptés.
 
-Les sorties de commandes, arborescences de fichiers, configurations et extraits de journaux ne sont pas des diagrammes : ils restent dans des blocs de code adaptés.
+## Images récapitulatives
+
+Lorsqu'une image pédagogique existe dans le répertoire `media/` de la campagne, elle est intégrée avec du Markdown standard afin d'être rendue aussi bien par GitHub que par MkDocs :
+
+```markdown
+## Schéma récapitulatif
+
+![Récapitulatif visuel du chapitre X.Y](media/recap-X.Y.png)
+```
+
+Règles associées :
+
+- utiliser un chemin relatif au fichier du chapitre ;
+- fournir un texte alternatif qui décrit la fonction de l'image ;
+- ne jamais dépendre uniquement d'une couleur pour transmettre une information ;
+- ne pas dupliquer sous forme ASCII une image déjà affichée ;
+- conserver dans le texte les informations indispensables à la compréhension et aux exercices.
 
 ## Règles éditoriales
 
@@ -115,8 +136,10 @@ Les sorties de commandes, arborescences de fichiers, configurations et extraits 
 
 - le titre et le nom du fichier décrivent le même sujet ;
 - un seul titre de niveau 1 existe hors des blocs de code ;
-- les trois sections introductives sont présentes ;
+- les trois sections introductives sont présentes et dans le même ordre ;
 - une section **Synthèse** est présente ;
+- chaque Mermaid apporte une relation, une architecture, une séquence ou un état utile ;
 - les diagrammes Mermaid possèdent des clôtures de blocs correctes ;
 - les liens vers les chapitres précédent et suivant pointent vers des fichiers existants ;
-- les images référencées existent dans le répertoire `media/` de la campagne.
+- les images référencées existent dans le répertoire `media/` de la campagne ;
+- le rendu MkDocs est construit sans erreur avant publication.
