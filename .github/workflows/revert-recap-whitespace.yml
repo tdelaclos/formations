@@ -1,0 +1,24 @@
+name: Nettoyage final temporaire
+on:
+  push:
+    branches: [agent/integrer-images-recap]
+permissions:
+  contents: write
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/integrer-images-recap
+          fetch-depth: 0
+      - name: Restaurer les chapitres sans image pertinente
+        run: |
+          git checkout origin/main -- sentinel/docs/campagne_03/3.8-ip-sets-firewalld.md sentinel/docs/campagne_03/3.10-politique-reseau-sentinel.md
+          git config user.name "tdelaclos"
+          git config user.email "t.delaclos@gmail.com"
+          if ! git diff --quiet; then
+            git add sentinel/docs/campagne_03/3.8-ip-sets-firewalld.md sentinel/docs/campagne_03/3.10-politique-reseau-sentinel.md
+            git commit -m "Restaurer les chapitres sans récapitulatif pertinent"
+            git push origin HEAD:agent/integrer-images-recap
+          fi
