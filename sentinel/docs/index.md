@@ -18,10 +18,12 @@ Vous pouvez suivre le parcours depuis le début ou rejoindre directement un thè
 | confiner un processus compromis | [Campagne 6 — SELinux](campagne_06/6.1-pourquoi-selinux-existe.md) |
 | protéger et authentifier les échanges | [Campagne 7 — TLS et PKI](campagne_07/7.1-comprendre-cryptographie-appliquee.md) |
 | centraliser les identités | [Campagne 8 — FreeIPA](campagne_08/8.1-presentation-freeipa.md) |
-| automatiser un déploiement multi-hôte | [Campagne 9 — Ansible](campagne_09/9.1-pourquoi-automatiser-avec-ansible.md) |
+| automatiser un déploiement multi-hôte | [Campagne 9 — Ansible](campagne_09/9.1-architecture-ansible.md) |
 | livrer un composant natif AlmaLinux | [Campagne 10 — RPM](campagne_10/10.1-construire-paquet-rpm.md) |
 | exécuter Sentinel en conteneur rootless | [Campagne 11 — Podman](campagne_11/11.1-decouvrir-podman.md) |
 | superviser et auditer la plateforme | [Campagne 12 — Observabilité](campagne_12/12.1-centraliser-journaux-rsyslog.md) |
+| observer la plateforme depuis Kali | [Campagne 13 — Reconnaissance](campagne_13/13.1-reconnaissance.md) |
+| réaliser le projet intégrateur final | [Campagne 14 — Projet final](campagne_14/14.1-deployer-sentinel-almalinux-minimale.md) |
 
 Pour comprendre les interfaces déjà acquises et les versions de l'application, consultez le [parcours applicatif Sentinel](PARCOURS-SENTINEL.md).
 
@@ -50,6 +52,7 @@ flowchart LR
     Trust --> Delivery["Ansible + RPM"]
     Delivery --> Runtime["Podman rootless"]
     Runtime --> Observe["Journaux + métriques"]
+    Observe --> Final["Audit final reproductible"]
 ```
 
 Les checkpoints exécutables sont conservés dans le [répertoire `labs/sentinel-app/checkpoints/` du dépôt](https://github.com/tdelaclos/formations/tree/main/sentinel/labs/sentinel-app/checkpoints). Ils permettent de reprendre le parcours à un jalon connu, de comparer deux versions et d'exécuter les tests cumulatifs.
@@ -64,6 +67,7 @@ Les checkpoints exécutables sont conservés dans le [répertoire `labs/sentinel
 | `0.6.0` | 8 | autorisation d'identités issues de FreeIPA |
 | `1.0.0` | 10 | interfaces stabilisées et paquet RPM |
 | `1.1.0` | 12 | métriques Prometheus et information de build |
+| `1.1.0` | 14 | code inchangé, plateforme qualifiée de bout en bout |
 
 ## Comment travailler un chapitre
 
@@ -102,7 +106,7 @@ Les campagnes 8 à 12 ajoutent FreeIPA, Ansible, RPM, Podman et l'observabilité
 
 ### Partie III — Mettre en situation
 
-Les campagnes 13 et 14 sont prévues pour confronter la plateforme à des scénarios d'attaque puis réaliser un projet d'intégration final. Elles apparaîtront dans la navigation lorsqu'elles seront rédigées.
+La campagne 13 confronte progressivement la plateforme à des scénarios d'attaque et de défense ; elle est actuellement en cours de rédaction. La campagne 14 est le projet intégrateur final : elle assemble les acquis, qualifie les variantes de déploiement et aboutit à un audit reproductible avec décision de mise en production.
 
 ## Repères utiles
 
