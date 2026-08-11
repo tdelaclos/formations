@@ -25,7 +25,6 @@ def normalize_opening(text: str) -> str:
     if not lines:
         return text
 
-    # Conserver les lignes de contenu, mais réduire les blancs successifs.
     compact: list[str] = []
     blank = False
     for line in lines:
@@ -39,7 +38,6 @@ def normalize_opening(text: str) -> str:
     while compact and compact[-1] == "":
         compact.pop()
 
-    # Le formalisme commun sépare le H1, le cartouche de campagne et la citation.
     rebuilt: list[str] = []
     for line in compact:
         if rebuilt and line.startswith("> ") and rebuilt[-1] != "" and not rebuilt[-1].startswith(">"):
@@ -65,8 +63,33 @@ def simple_flowchart(body: str) -> bool:
     if not lines or not lines[0].startswith(("flowchart", "graph")):
         return False
     edges = sum("-->" in ln or "-." in ln or "==>" in ln for ln in lines[1:])
-    # Heuristique volontairement conservative : signaler, ne pas supprimer.
     return edges <= 1 and len(lines) <= 5
+
+
+def prune_trivial_diagrams(text: str) -> tuple[str, int]:
+    """Retire seulement les micro-flowcharts dans les chapitres déjà très chargés.
+
+    Une architecture, une séquence, un état ou un schéma comportant plusieurs relations
+    est toujours conservé. Le seuil de dix diagrammes évite de supprimer un petit schéma
+    qui serait l'unique aide visuelle d'un chapitre.
+    """
+    diagrams = list(MERMAID.finditer(text))
+    if len(diagrams) < 10:
+        return text, 0
+
+    removed = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal removed
+        if simple_flowchart(match.group(1)):
+            removed += 1
+            return ""
+        return match.group(0)
+
+    text = MERMAID.sub(replace, text)
+    # Éviter les grands blancs laissés par les blocs retirés.
+    text = re.sub(r"\n{4,}", "\n\n", text)
+    return text, removed
 
 
 def main() -> None:
@@ -74,13 +97,14 @@ def main() -> None:
         "# Audit Mermaid et structure des chapitres",
         "",
         "Ce rapport est généré temporairement pour la passe d'harmonisation.",
-        "Les diagrammes simples sont signalés pour revue humaine mais ne sont pas supprimés automatiquement.",
+        "Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant déjà au moins dix diagrammes.",
         "",
     ]
     total = 0
     with_infographic = 0
     with_image = 0
-    simple = 0
+    removed_simple = 0
+    remaining_simple = 0
     structural_issues: list[str] = []
 
     for path in sorted(DOCS.glob("campagne_*/*.md")):
@@ -107,6 +131,8 @@ def main() -> None:
             )
         text = INFOGRAPHIC.sub(replacement, text)
         text = normalize_opening(text)
+        text, removed = prune_trivial_diagrams(text)
+        removed_simple += removed
         path.write_text(text, encoding="utf-8")
 
         h2s = H2.findall(text)
@@ -124,7 +150,7 @@ def main() -> None:
             dtype = diagram_type(body)
             types[dtype] = types.get(dtype, 0) + 1
             if simple_flowchart(body):
-                simple += 1
+                remaining_simple += 1
                 before = text[: d.start()]
                 headings = H2.findall(before)
                 context = headings[-1] if headings else "début de chapitre"
@@ -132,23 +158,25 @@ def main() -> None:
         type_summary = ", ".join(f"{k}: {v}" for k, v in sorted(types.items())) or "aucun"
         report.append(f"## {number} — `{path.name}`")
         report.append("")
-        report.append(f"- Mermaid : **{len(diagrams)}** ({type_summary})")
+        report.append(f"- Mermaid conservés : **{len(diagrams)}** ({type_summary})")
         report.append(f"- Image récapitulative : **{'oui' if image.exists() else 'non'}**")
+        if removed:
+            report.append(f"- Micro-flowcharts retirés : **{removed}**")
         if simple_here:
-            report.append("- Diagrammes très simples à revoir : " + "; ".join(f"`{x}`" for x in simple_here))
+            report.append("- Diagrammes simples conservés (chapitre peu chargé) : " + "; ".join(f"`{x}`" for x in simple_here))
         report.append("")
 
-    # Détecter les anciens titres résiduels après transformation.
     residual = []
     for path in sorted(DOCS.glob("campagne_*/*.md")):
         if CHAPTER.match(path.name) and "## Infographie de révision" in path.read_text(encoding="utf-8"):
             residual.append(path)
 
     report.insert(5, f"- Chapitres analysés : **{total}**")
-    report.insert(6, f"- Anciennes infographies retirées/remplacées : **{with_infographic}**")
-    report.insert(7, f"- PNG récapitulatifs raccordés : **{with_image}**")
-    report.insert(8, f"- Diagrammes très simples signalés : **{simple}**")
-    report.insert(9, "")
+    report.insert(6, f"- Anciennes infographies retirées/remplacées sur cette exécution : **{with_infographic}**")
+    report.insert(7, f"- PNG récapitulatifs présents/raccordés : **{with_image}**")
+    report.insert(8, f"- Micro-flowcharts retirés : **{removed_simple}**")
+    report.insert(9, f"- Diagrammes simples conservés dans les chapitres peu chargés : **{remaining_simple}**")
+    report.insert(10, "")
     report.append("## Anomalies structurelles")
     report.append("")
     report.extend(structural_issues or ["Aucune anomalie sur les trois premiers H2."])
