@@ -6,7 +6,7 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 - Chapitres analysés : **106**
 - Anciennes infographies retirées/remplacées sur cette exécution : **0**
 - PNG récapitulatifs présents/raccordés : **22**
-- Micro-flowcharts retirés : **161**
+- Micro-flowcharts retirés : **0**
 - Diagrammes simples conservés dans les chapitres peu chargés : **3**
 
 ## 1.1 — `1.1-pourquoi-securiser-socle-linux.md`
@@ -113,25 +113,21 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 
 - Mermaid conservés : **17** (flowchart: 17)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **3**
 
 ## 3.10 — `3.10-politique-reseau-sentinel.md`
 
 - Mermaid conservés : **16** (flowchart: 16)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **7**
 
 ## 3.2 — `3.2-architecture-firewalld.md`
 
 - Mermaid conservés : **9** (flowchart: 8, sequenceDiagram: 1)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **5**
 
 ## 3.3 — `3.3-zones-firewalld.md`
 
 - Mermaid conservés : **15** (flowchart: 15)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **6**
 
 ## 3.4 — `3.4-services-firewalld.md`
 
@@ -142,61 +138,51 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 
 - Mermaid conservés : **17** (flowchart: 16, stateDiagram-v2: 1)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **5**
 
 ## 3.6 — `3.6-rich-rules-firewalld.md`
 
 - Mermaid conservés : **12** (flowchart: 9, sequenceDiagram: 3)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **10**
 
 ## 3.7 — `3.7-journalisation-firewalld.md`
 
 - Mermaid conservés : **10** (flowchart: 10)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **8**
 
 ## 3.8 — `3.8-ip-sets-firewalld.md`
 
 - Mermaid conservés : **9** (flowchart: 9)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **16**
 
 ## 3.9 — `3.9-runtime-permanent.md`
 
 - Mermaid conservés : **12** (flowchart: 12)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **8**
 
 ## 4.1 — `4.1-architecture-openssh.md`
 
 - Mermaid conservés : **27** (flowchart: 26, sequenceDiagram: 1)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **7**
 
 ## 4.2 — `4.2-authentification-mot-de-passe.md`
 
 - Mermaid conservés : **21** (flowchart: 20, sequenceDiagram: 1)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **4**
 
 ## 4.3 — `4.3-authentification-par-cles.md`
 
 - Mermaid conservés : **14** (flowchart: 12, sequenceDiagram: 2)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **13**
 
 ## 4.4 — `4.4-durcissement-sshd-config.md`
 
 - Mermaid conservés : **12** (flowchart: 12)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **1**
 
 ## 4.5 — `4.5-bastion-administration.md`
 
 - Mermaid conservés : **24** (flowchart: 24)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **13**
 
 ## 4.6 — `4.6-journalisation-audit-ssh.md`
 
@@ -207,7 +193,6 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 
 - Mermaid conservés : **23** (flowchart: 23)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **5**
 
 ## 4.8 — `4.8-mission-administration-sentinel.md`
 
@@ -219,37 +204,31 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 
 - Mermaid conservés : **18** (flowchart: 18)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **4**
 
 ## 5.2 — `5.2-unites-systemd.md`
 
 - Mermaid conservés : **12** (flowchart: 12)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **6**
 
 ## 5.3 — `5.3-creer-service-sentinel.md`
 
 - Mermaid conservés : **8** (flowchart: 8)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **6**
 
 ## 5.4 — `5.4-sandboxing-systemd.md`
 
 - Mermaid conservés : **17** (flowchart: 17)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **5**
 
 ## 5.5 — `5.5-capacites-linux.md`
 
 - Mermaid conservés : **4** (flowchart: 4)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **11**
 
 ## 5.6 — `5.6-journalisation-journald.md`
 
 - Mermaid conservés : **10** (classDiagram: 1, flowchart: 9)
 - Image récapitulative : **oui**
-- Micro-flowcharts retirés : **8**
 
 ## 5.7 — `5.7-supervision-redemarrage.md`
 
@@ -260,7 +239,6 @@ Les micro-flowcharts redondants sont retirés uniquement des chapitres contenant
 
 - Mermaid conservés : **6** (flowchart: 6)
 - Image récapitulative : **non**
-- Micro-flowcharts retirés : **10**
 
 ## 6.1 — `6.1-pourquoi-selinux-existe.md`
 
