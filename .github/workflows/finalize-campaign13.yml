@@ -1,0 +1,118 @@
+name: Finalisation temporaire campagne 13
+
+on:
+  push:
+    branches:
+      - agent/campagne-13-attaques-defense
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/campagne-13-attaques-defense
+          fetch-depth: 0
+
+      - name: Mettre à jour les sommaires
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          # MkDocs navigation
+          p = Path('sentinel/mkdocs.yml')
+          text = p.read_text(encoding='utf-8')
+          block = """    - Campagne 13 - Attaques et défense:\n      - campagne_13/13.1-reconnaissance.md\n      - campagne_13/13.2-scan-reseau.md\n      - campagne_13/13.3-brute-force-ssh.md\n      - campagne_13/13.4-escalade-privileges.md\n      - campagne_13/13.5-mouvements-lateraux.md\n      - campagne_13/13.6-persistance.md\n      - campagne_13/13.7-exfiltration.md\n      - campagne_13/13.8-etude-cas-complete.md\n"""
+          marker = '    - Campagne 14 - Projet final:\n'
+          if block not in text:
+              if marker not in text:
+                  raise SystemExit('Marqueur campagne 14 absent dans mkdocs.yml')
+              text = text.replace(marker, block + marker, 1)
+          p.write_text(text, encoding='utf-8')
+
+          # Root README
+          p = Path('README.md')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              'Les campagnes 1 à 12 et la campagne 14 sont disponibles. La campagne 13, consacrée aux scénarios d\'attaque et de défense, est en cours de rédaction et commence par la reconnaissance.',
+              'Les campagnes 1 à 14 sont disponibles. La campagne 13 confronte la plateforme à des scénarios d\'attaque et de défense strictement bornés dans le laboratoire Sentinel.'
+          )
+          text = text.replace(
+              '| [13](sentinel/docs/campagne_13/13.1-reconnaissance.md) | attaques et défense | campagne en cours, reconnaissance depuis Kali |',
+              '| [13](sentinel/docs/campagne_13/13.1-reconnaissance.md) | attaques et défense | scénarios bornés, détection, corrélation et remédiation |'
+          )
+          p.write_text(text, encoding='utf-8')
+
+          # Docs README
+          p = Path('sentinel/docs/README.md')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              'Les campagnes 1 à 12 et la campagne 14 sont rédigées. La campagne 13 est en cours : le chapitre 13.1 est disponible et les chapitres suivants restent planifiés.',
+              'Les campagnes 1 à 14 sont rédigées. La campagne 13 utilise des scénarios d’attaque strictement bornés afin d’exercer la détection, le confinement, la corrélation et la remédiation sans introduire de vulnérabilité volontaire dans Sentinel.'
+          )
+          old = """Le chapitre disponible lance la campagne ; les suivants restent planifiés.\n\n- [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)\n- 13.2 — Scan réseau *(planifié)*\n- 13.3 — Brute force SSH *(planifié)*\n- 13.4 — Escalade de privilèges *(planifié)*\n- 13.5 — Mouvements latéraux *(planifié)*\n- 13.6 — Persistance *(planifié)*\n- 13.7 — Exfiltration *(planifié)*\n- 13.8 — Étude de cas complète *(planifié)*"""
+          new = """La campagne suit un cycle commun : observer, produire un événement contrôlé, collecter les traces, corriger puis retester.\n\n- [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)\n- [13.2 — Scan réseau](campagne_13/13.2-scan-reseau.md)\n- [13.3 — Brute force SSH](campagne_13/13.3-brute-force-ssh.md)\n- [13.4 — Escalade de privilèges](campagne_13/13.4-escalade-privileges.md)\n- [13.5 — Mouvements latéraux](campagne_13/13.5-mouvements-lateraux.md)\n- [13.6 — Persistance](campagne_13/13.6-persistance.md)\n- [13.7 — Exfiltration](campagne_13/13.7-exfiltration.md)\n- [13.8 — Étude de cas complète](campagne_13/13.8-etude-cas-complete.md)"""
+          if old not in text:
+              raise SystemExit('Bloc campagne 13 attendu absent de docs/README.md')
+          text = text.replace(old, new, 1)
+          p.write_text(text, encoding='utf-8')
+
+          # Docs index
+          p = Path('sentinel/docs/index.md')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              '| observer la plateforme depuis Kali | [Campagne 13 — Reconnaissance](campagne_13/13.1-reconnaissance.md) |',
+              '| confronter la plateforme à des scénarios d’attaque contrôlés | [Campagne 13 — Attaques et défense](campagne_13/13.1-reconnaissance.md) |'
+          )
+          text = text.replace(
+              '| `1.1.0` | 12 | métriques Prometheus et information de build |\n| `1.1.0` | 14 | code inchangé, plateforme qualifiée de bout en bout |',
+              '| `1.1.0` | 12 | métriques Prometheus et information de build |\n| `1.1.x` | 13 | code normalement inchangé, production et corrélation de traces d’incident |\n| `1.1.0` | 14 | code inchangé, plateforme qualifiée de bout en bout |'
+          )
+          text = text.replace(
+              'La campagne 13 confronte progressivement la plateforme à des scénarios d\'attaque et de défense ; elle est actuellement en cours de rédaction. La campagne 14 est le projet intégrateur final :',
+              'La campagne 13 confronte progressivement la plateforme à des scénarios d\'attaque et de défense strictement bornés : reconnaissance, exposition, authentification, privilèges, segmentation, persistance, flux sortants et corrélation. La campagne 14 est le projet intégrateur final :'
+          )
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Valider la structure des chapitres 13
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          files = sorted(Path('sentinel/docs/campagne_13').glob('13.*.md'))
+          assert len(files) == 8, files
+          required = ['## Vous êtes ici', '## Objectifs pédagogiques', '## Pourquoi ce chapitre existe', '## Synthèse', '## Navigation']
+          for f in files:
+              text = f.read_text(encoding='utf-8')
+              for item in required:
+                  if item not in text:
+                      raise SystemExit(f'{f}: section absente {item}')
+              positions = [text.index(x) for x in required[:3]]
+              if positions != sorted(positions):
+                  raise SystemExit(f'{f}: ordre introductif incorrect')
+              h1 = re.findall(r'^# ', re.sub(r'```.*?```', '', text, flags=re.S), flags=re.M)
+              if len(h1) != 1:
+                  raise SystemExit(f'{f}: {len(h1)} H1 hors blocs')
+          print(f'{len(files)} chapitres campagne 13 validés')
+          PY
+
+      - name: Construire MkDocs
+        run: |
+          python3 -m pip install --quiet mkdocs mkdocs-mermaid2-plugin
+          mkdocs build -f sentinel/mkdocs.yml --strict
+
+      - name: Publier les mises à jour
+        run: |
+          git config user.name "tdelaclos"
+          git config user.email "t.delaclos@gmail.com"
+          git add README.md sentinel/mkdocs.yml sentinel/docs/README.md sentinel/docs/index.md
+          if git diff --cached --quiet; then
+            echo "Aucun changement de sommaire"
+            exit 0
+          fi
+          git commit -m "Intégrer la campagne 13 dans la documentation"
+          git push origin HEAD:agent/campagne-13-attaques-defense
