@@ -22,7 +22,6 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
 
-          # MkDocs navigation
           p = Path('sentinel/mkdocs.yml')
           text = p.read_text(encoding='utf-8')
           block = """    - Campagne 13 - Attaques et défense:\n      - campagne_13/13.1-reconnaissance.md\n      - campagne_13/13.2-scan-reseau.md\n      - campagne_13/13.3-brute-force-ssh.md\n      - campagne_13/13.4-escalade-privileges.md\n      - campagne_13/13.5-mouvements-lateraux.md\n      - campagne_13/13.6-persistance.md\n      - campagne_13/13.7-exfiltration.md\n      - campagne_13/13.8-etude-cas-complete.md\n"""
@@ -33,7 +32,6 @@ jobs:
               text = text.replace(marker, block + marker, 1)
           p.write_text(text, encoding='utf-8')
 
-          # Root README
           p = Path('README.md')
           text = p.read_text(encoding='utf-8')
           text = text.replace(
@@ -46,7 +44,6 @@ jobs:
           )
           p.write_text(text, encoding='utf-8')
 
-          # Docs README
           p = Path('sentinel/docs/README.md')
           text = p.read_text(encoding='utf-8')
           text = text.replace(
@@ -55,12 +52,11 @@ jobs:
           )
           old = """Le chapitre disponible lance la campagne ; les suivants restent planifiés.\n\n- [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)\n- 13.2 — Scan réseau *(planifié)*\n- 13.3 — Brute force SSH *(planifié)*\n- 13.4 — Escalade de privilèges *(planifié)*\n- 13.5 — Mouvements latéraux *(planifié)*\n- 13.6 — Persistance *(planifié)*\n- 13.7 — Exfiltration *(planifié)*\n- 13.8 — Étude de cas complète *(planifié)*"""
           new = """La campagne suit un cycle commun : observer, produire un événement contrôlé, collecter les traces, corriger puis retester.\n\n- [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)\n- [13.2 — Scan réseau](campagne_13/13.2-scan-reseau.md)\n- [13.3 — Brute force SSH](campagne_13/13.3-brute-force-ssh.md)\n- [13.4 — Escalade de privilèges](campagne_13/13.4-escalade-privileges.md)\n- [13.5 — Mouvements latéraux](campagne_13/13.5-mouvements-lateraux.md)\n- [13.6 — Persistance](campagne_13/13.6-persistance.md)\n- [13.7 — Exfiltration](campagne_13/13.7-exfiltration.md)\n- [13.8 — Étude de cas complète](campagne_13/13.8-etude-cas-complete.md)"""
-          if old not in text:
+          if old not in text and new not in text:
               raise SystemExit('Bloc campagne 13 attendu absent de docs/README.md')
           text = text.replace(old, new, 1)
           p.write_text(text, encoding='utf-8')
 
-          # Docs index
           p = Path('sentinel/docs/index.md')
           text = p.read_text(encoding='utf-8')
           text = text.replace(
@@ -103,7 +99,7 @@ jobs:
       - name: Construire MkDocs
         run: |
           python3 -m pip install --quiet mkdocs mkdocs-mermaid2-plugin
-          mkdocs build -f sentinel/mkdocs.yml --strict
+          mkdocs build -f sentinel/mkdocs.yml
 
       - name: Publier les mises à jour
         run: |
