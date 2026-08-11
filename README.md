@@ -12,7 +12,7 @@ Les liens suivants permettent de commencer sans installer d'outil :
 - [trajectoire de l'application Sentinel](sentinel/docs/PARCOURS-SENTINEL.md) ;
 - [code et tests des checkpoints](sentinel/labs/sentinel-app/README.md).
 
-Les campagnes 1 à 12 et la campagne 14 sont disponibles. La campagne 13, consacrée aux scénarios d'attaque et de défense, est en cours de rédaction et commence par la reconnaissance.
+Les campagnes 1 à 14 sont disponibles. La campagne 13 confronte la plateforme à des scénarios d'attaque et de défense strictement bornés dans le laboratoire Sentinel.
 
 ## Parcours disponible
 
@@ -30,7 +30,7 @@ Les campagnes 1 à 12 et la campagne 14 sont disponibles. La campagne 13, consac
 | [10](sentinel/docs/campagne_10/10.1-construire-paquet-rpm.md) | RPM | paquet signé et dépôt privé |
 | [11](sentinel/docs/campagne_11/11.1-decouvrir-podman.md) | Podman | exécution rootless de Sentinel |
 | [12](sentinel/docs/campagne_12/12.1-centraliser-journaux-rsyslog.md) | supervision et audit | journaux, audit, intégrité, métriques et alertes |
-| [13](sentinel/docs/campagne_13/13.1-reconnaissance.md) | attaques et défense | campagne en cours, reconnaissance depuis Kali |
+| [13](sentinel/docs/campagne_13/13.1-reconnaissance.md) | attaques et défense | scénarios bornés, détection, corrélation et remédiation |
 | [14](sentinel/docs/campagne_14/14.1-deployer-sentinel-almalinux-minimale.md) | projet final | plateforme `1.1.0` qualifiée et audit reproductible |
 
 ## Utiliser le site MkDocs

@@ -22,7 +22,7 @@ Vous pouvez suivre le parcours depuis le début ou rejoindre directement un thè
 | livrer un composant natif AlmaLinux | [Campagne 10 — RPM](campagne_10/10.1-construire-paquet-rpm.md) |
 | exécuter Sentinel en conteneur rootless | [Campagne 11 — Podman](campagne_11/11.1-decouvrir-podman.md) |
 | superviser et auditer la plateforme | [Campagne 12 — Observabilité](campagne_12/12.1-centraliser-journaux-rsyslog.md) |
-| observer la plateforme depuis Kali | [Campagne 13 — Reconnaissance](campagne_13/13.1-reconnaissance.md) |
+| confronter la plateforme à des scénarios d’attaque contrôlés | [Campagne 13 — Attaques et défense](campagne_13/13.1-reconnaissance.md) |
 | réaliser le projet intégrateur final | [Campagne 14 — Projet final](campagne_14/14.1-deployer-sentinel-almalinux-minimale.md) |
 
 Pour comprendre les interfaces déjà acquises et les versions de l'application, consultez le [parcours applicatif Sentinel](PARCOURS-SENTINEL.md).
@@ -67,6 +67,7 @@ Les checkpoints exécutables sont conservés dans le [répertoire `labs/sentinel
 | `0.6.0` | 8 | autorisation d'identités issues de FreeIPA |
 | `1.0.0` | 10 | interfaces stabilisées et paquet RPM |
 | `1.1.0` | 12 | métriques Prometheus et information de build |
+| `1.1.x` | 13 | code normalement inchangé, production et corrélation de traces d’incident |
 | `1.1.0` | 14 | code inchangé, plateforme qualifiée de bout en bout |
 
 ## Comment travailler un chapitre
@@ -106,7 +107,7 @@ Les campagnes 8 à 12 ajoutent FreeIPA, Ansible, RPM, Podman et l'observabilité
 
 ### Partie III — Mettre en situation
 
-La campagne 13 confronte progressivement la plateforme à des scénarios d'attaque et de défense ; elle est actuellement en cours de rédaction. La campagne 14 est le projet intégrateur final : elle assemble les acquis, qualifie les variantes de déploiement et aboutit à un audit reproductible avec décision de mise en production.
+La campagne 13 confronte progressivement la plateforme à des scénarios d'attaque et de défense strictement bornés : reconnaissance, exposition, authentification, privilèges, segmentation, persistance, flux sortants et corrélation. La campagne 14 est le projet intégrateur final : elle assemble les acquis, qualifie les variantes de déploiement et aboutit à un audit reproductible avec décision de mise en production.
 
 ## Repères utiles
 
