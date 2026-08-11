@@ -122,6 +122,15 @@ nav:
       - campagne_12/12.4-superviser-sentinel-prometheus.md
       - campagne_12/12.5-concevoir-alertes-alertmanager.md
       - campagne_12/12.6-construire-tableau-bord-sentinel.md
+    - Campagne 13 - Attaques et défense:
+      - campagne_13/13.1-reconnaissance.md
+      - campagne_13/13.2-scan-reseau.md
+      - campagne_13/13.3-brute-force-ssh.md
+      - campagne_13/13.4-escalade-privileges.md
+      - campagne_13/13.5-mouvements-lateraux.md
+      - campagne_13/13.6-persistance.md
+      - campagne_13/13.7-exfiltration.md
+      - campagne_13/13.8-etude-cas-complete.md
     - Campagne 14 - Projet final:
       - campagne_14/14.1-deployer-sentinel-almalinux-minimale.md
       - campagne_14/14.2-securiser-hote.md

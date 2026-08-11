@@ -2,7 +2,7 @@
 
 Ce fichier est le sommaire pratique destiné à la lecture directe depuis GitHub. La [page d'accueil](index.md) présente les objectifs, la méthode et le fil rouge ; la liste ci-dessous donne un accès direct à chaque chapitre.
 
-Les campagnes 1 à 12 et la campagne 14 sont rédigées. La campagne 13 est en cours : le chapitre 13.1 est disponible et les chapitres suivants restent planifiés. Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.md) et les versions de l'application dans le [parcours Sentinel](PARCOURS-SENTINEL.md).
+Les campagnes 1 à 14 sont rédigées. La campagne 13 utilise des scénarios d’attaque strictement bornés afin d’exercer la détection, le confinement, la corrélation et la remédiation sans introduire de vulnérabilité volontaire dans Sentinel. Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.md) et les versions de l'application dans le [parcours Sentinel](PARCOURS-SENTINEL.md).
 
 ## Partie I — Construire un socle sécurisé
 
@@ -145,16 +145,16 @@ Les campagnes 1 à 12 et la campagne 14 sont rédigées. La campagne 13 est en c
 
 ### Campagne 13 — Attaques et défense
 
-Le chapitre disponible lance la campagne ; les suivants restent planifiés.
+La campagne suit un cycle commun : observer, produire un événement contrôlé, collecter les traces, corriger puis retester.
 
 - [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)
-- 13.2 — Scan réseau *(planifié)*
-- 13.3 — Brute force SSH *(planifié)*
-- 13.4 — Escalade de privilèges *(planifié)*
-- 13.5 — Mouvements latéraux *(planifié)*
-- 13.6 — Persistance *(planifié)*
-- 13.7 — Exfiltration *(planifié)*
-- 13.8 — Étude de cas complète *(planifié)*
+- [13.2 — Scan réseau](campagne_13/13.2-scan-reseau.md)
+- [13.3 — Brute force SSH](campagne_13/13.3-brute-force-ssh.md)
+- [13.4 — Escalade de privilèges](campagne_13/13.4-escalade-privileges.md)
+- [13.5 — Mouvements latéraux](campagne_13/13.5-mouvements-lateraux.md)
+- [13.6 — Persistance](campagne_13/13.6-persistance.md)
+- [13.7 — Exfiltration](campagne_13/13.7-exfiltration.md)
+- [13.8 — Étude de cas complète](campagne_13/13.8-etude-cas-complete.md)
 
 ### Campagne 14 — Projet final
 
