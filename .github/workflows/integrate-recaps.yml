@@ -1,0 +1,100 @@
+name: Intégration temporaire des images récapitulatives
+
+on:
+  push:
+    branches:
+      - agent/harmonisation-finale-docs
+
+permissions:
+  contents: write
+
+jobs:
+  integrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Extraire et ranger les images
+        run: |
+          mkdir -p /tmp/recaps
+          tar -xzf .tmp/recaps-batch.tar.gz -C /tmp/recaps
+          mkdir -p sentinel/docs/campagne_07/media sentinel/docs/campagne_08/media sentinel/docs/campagne_09/media sentinel/docs/campagne_10/media sentinel/docs/campagne_11/media sentinel/docs/campagne_14/media
+          cp /tmp/recaps/recap-7.2.jpg sentinel/docs/campagne_07/media/
+          cp /tmp/recaps/recap-7.4.jpg sentinel/docs/campagne_07/media/
+          cp /tmp/recaps/recap-7.6.jpg sentinel/docs/campagne_07/media/
+          cp /tmp/recaps/recap-8.2.jpg sentinel/docs/campagne_08/media/
+          cp /tmp/recaps/recap-8.9.jpg sentinel/docs/campagne_08/media/
+          cp /tmp/recaps/recap-9.1.jpg sentinel/docs/campagne_09/media/
+          cp /tmp/recaps/recap-9.7.jpg sentinel/docs/campagne_09/media/
+          cp /tmp/recaps/recap-10.6.jpg sentinel/docs/campagne_10/media/
+          cp /tmp/recaps/recap-11.6.jpg sentinel/docs/campagne_11/media/
+          cp /tmp/recaps/recap-14.8.jpg sentinel/docs/campagne_14/media/
+
+      - name: Ajouter les schémas aux chapitres
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          mapping = {
+              'sentinel/docs/campagne_07/7.2-lire-verifier-certificats-x509.md': '7.2',
+              'sentinel/docs/campagne_07/7.4-authentification-mutuelle-tls.md': '7.4',
+              'sentinel/docs/campagne_07/7.6-renouveler-revoquer-certificats.md': '7.6',
+              'sentinel/docs/campagne_08/8.2-architecture-interne-freeipa.md': '8.2',
+              'sentinel/docs/campagne_08/8.9-integration-sentinel.md': '8.9',
+              'sentinel/docs/campagne_09/9.1-architecture-ansible.md': '9.1',
+              'sentinel/docs/campagne_09/9.7-deployer-sentinel-ansible.md': '9.7',
+              'sentinel/docs/campagne_10/10.6-packager-sentinel.md': '10.6',
+              'sentinel/docs/campagne_11/11.6-executer-sentinel-securite.md': '11.6',
+              'sentinel/docs/campagne_14/14.8-audit-final-tests-kali.md': '14.8',
+          }
+          for filename, chapter in mapping.items():
+              path = Path(filename)
+              text = path.read_text(encoding='utf-8')
+              if '## Schéma récapitulatif' in text:
+                  raise SystemExit(f'{path}: une section Schéma récapitulatif existe déjà')
+              marker = '\n## Synthèse\n'
+              start = text.find(marker)
+              if start < 0:
+                  raise SystemExit(f'{path}: section Synthèse absente')
+              next_h2 = text.find('\n## ', start + len(marker))
+              block = f'\n## Schéma récapitulatif\n\n![Récapitulatif du chapitre {chapter}](media/recap-{chapter}.jpg)\n'
+              if next_h2 < 0:
+                  text = text.rstrip() + '\n' + block
+              else:
+                  text = text[:next_h2] + block + text[next_h2:]
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Vérifier les références d’images
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          errors = []
+          for md in Path('sentinel/docs').glob('campagne_*/*.md'):
+              text = md.read_text(encoding='utf-8')
+              for target in re.findall(r'!\[[^\]]*\]\(([^)]+)\)', text):
+                  if '://' in target or target.startswith('#'):
+                      continue
+                  target = target.split('#', 1)[0]
+                  if not (md.parent / target).exists():
+                      errors.append(f'{md}: image absente: {target}')
+          if errors:
+              raise SystemExit('\n'.join(errors))
+          PY
+
+      - name: Construire MkDocs
+        run: |
+          python3 -m pip install --disable-pip-version-check mkdocs mkdocs-mermaid2-plugin
+          mkdocs build -f sentinel/mkdocs.yml
+
+      - name: Publier l’intégration et nettoyer les fichiers temporaires
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .tmp/recaps-batch.tar.gz .github/workflows/integrate-recaps.yml
+          git add sentinel/docs
+          git commit -m 'Ajouter les images récapitulatives aux chapitres clés'
+          git push
