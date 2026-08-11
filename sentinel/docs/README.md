@@ -2,7 +2,7 @@
 
 Ce fichier est le sommaire pratique destiné à la lecture directe depuis GitHub. La [page d'accueil](index.md) présente les objectifs, la méthode et le fil rouge ; la liste ci-dessous donne un accès direct à chaque chapitre.
 
-Les campagnes 1 à 12 sont rédigées. Les campagnes 13 et 14 restent planifiées. Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.md) et les versions de l'application dans le [parcours Sentinel](PARCOURS-SENTINEL.md).
+Les campagnes 1 à 12 et la campagne 14 sont rédigées. La campagne 13 est en cours : le chapitre 13.1 est disponible et les chapitres suivants restent planifiés. Le formalisme commun est décrit dans le [guide de rédaction](GUIDE-REDACTION.md) et les versions de l'application dans le [parcours Sentinel](PARCOURS-SENTINEL.md).
 
 ## Partie I — Construire un socle sécurisé
 
@@ -145,24 +145,24 @@ Les campagnes 1 à 12 sont rédigées. Les campagnes 13 et 14 restent planifiée
 
 ### Campagne 13 — Attaques et défense
 
-Chaque chapitre suit le cycle : présentation de l'attaque, réalisation depuis Kali Linux, analyse des traces, mise en œuvre des contre-mesures et vérification de leur efficacité.
+Le chapitre disponible lance la campagne ; les suivants restent planifiés.
 
-1. Reconnaissance
-2. Scan réseau
-3. Brute force SSH
-4. Escalade de privilèges
-5. Mouvements latéraux
-6. Persistance
-7. Exfiltration
-8. Étude de cas complète
+- [13.1 — Reconnaissance](campagne_13/13.1-reconnaissance.md)
+- 13.2 — Scan réseau *(planifié)*
+- 13.3 — Brute force SSH *(planifié)*
+- 13.4 — Escalade de privilèges *(planifié)*
+- 13.5 — Mouvements latéraux *(planifié)*
+- 13.6 — Persistance *(planifié)*
+- 13.7 — Exfiltration *(planifié)*
+- 13.8 — Étude de cas complète *(planifié)*
 
 ### Campagne 14 — Projet final
 
-1. Déployer Sentinel sur une AlmaLinux minimale
-2. Sécuriser l'hôte
-3. Intégrer FreeIPA
-4. Déployer avec Ansible
-5. Packager en RPM
-6. Conteneuriser avec Podman
-7. Superviser et auditer
-8. Réaliser l'audit final et les tests d'intrusion depuis Kali
+- [14.1 — Déployer Sentinel sur une AlmaLinux minimale](campagne_14/14.1-deployer-sentinel-almalinux-minimale.md)
+- [14.2 — Sécuriser l'hôte](campagne_14/14.2-securiser-hote.md)
+- [14.3 — Intégrer FreeIPA](campagne_14/14.3-integrer-freeipa.md)
+- [14.4 — Déployer avec Ansible](campagne_14/14.4-deployer-ansible.md)
+- [14.5 — Packager avec RPM](campagne_14/14.5-packager-rpm.md)
+- [14.6 — Conteneuriser avec Podman](campagne_14/14.6-conteneuriser-podman.md)
+- [14.7 — Superviser et auditer](campagne_14/14.7-superviser-auditer.md)
+- [14.8 — Audit final et tests depuis Kali](campagne_14/14.8-audit-final-tests-kali.md)
